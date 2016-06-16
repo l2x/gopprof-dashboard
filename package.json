@@ -11,8 +11,7 @@
     "start": "npm run server"
   },
   "contributors": [
-    "Rob Wormald <robwormald@gmail.com>",
-    "PatrickJS <github@gdi2290.com>"
+    ""
   ],
   "license": "MIT",
   "devDependencies": {
@@ -42,17 +41,14 @@
     "zone.js": "~0.6.12"
   },
   "keywords": [
-    "Angular2",
-    "angular2-seed",
-    "official angular 2 seed",
-    "official angular2 seed"
+    "Angular2"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/angular/angular2-seed.git"
+    "url": ""
   },
   "bugs": {
-    "url": "https://github.com/angular/angular2-seed/issues"
+    "url": ""
   },
-  "homepage": "https://github.com/angular/angular2-seed#readme"
+  "homepage": ""
 }
