@@ -14,4 +14,10 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
     $routeProvider.otherwise({
         redirectTo: '/view1'
     });
-}]);
+}])
+.config(function($mdThemingProvider) {
+  $mdThemingProvider.theme('default')
+    .primaryPalette('blue', {
+      'default': '700',
+    })
+});

@@ -5,9 +5,18 @@ ul, ol {
     padding: 0;
     margin: 0;
 }
+.md-whiteframe-glow-z1 {
+    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 0px 2px 2px rgba(0, 0, 0, 0.098), 0px 0px 5px 1px rgba(0, 0, 0, 0.084);
+}
 .header, .footer {
     background: #ccc;
 }
 .menu li {
     margin: 10px
+}
+.silenav {
+    background: #ECEFF1;
+    box-shadow: 3px 0 6px rgba(0, 0, 0, 0.3);
+    bottom: 0;
+    overflow: auto;
 }
