@@ -12,7 +12,7 @@
     <title>My AngularJS App</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
     <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
     <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
@@ -20,7 +20,7 @@
     <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 
-<body layout="column">
+<body>
     <md-toolbar class="md-whiteframe-glow-z1 header">
         <div class="md-toolbar-tools">
             <md-sidenav class="md-sidenav-left" md-is-locked-open="true">
@@ -37,41 +37,66 @@
         </div>
     </md-toolbar>
 
-    <md-content layout="row" flex class="container">
-        <md-sidenav class="md-sidenav-left sidenav" md-component-id="left" md-is-locked-open="true" md-disable-backdrop md-whiteframe="4">
-            <div layout="row" class="search">
-                <md-input-container md-no-float class="md-block" flex>
-                    <input placeholder="Search">
+    <md-content layout="row" class="md-padding pt0">
+        <div flex style="position:relative">
+            <div class="nodes-toolbar" layout="row" layout-align="start center">
+                <md-input-container md-no-float class="md-block">
+                    <input placeholder="Filter">
                 </md-input-container>
-                <md-input-container md-no-float>
-                    <md-select ng-model="selectedToppings" multiple placeholder="tag">
-                        <md-option ng-value="1">value</md-option>
-                        <md-option ng-value="2">selected</md-option>
-                        <md-option ng-value="3">multiple</md-option>
-                    </md-select>
-                </md-input-container>
+                <span> | <span>
+                <a href="javascript:void(0)" >全选</a>
             </div>
+            <md-tabs md-border-bottom md-autoselect md-dynamic-height class="md-tabs-ms">
+                <md-tab label="nodes">
+                    <md-list class="clearfix">
+                        <md-list-item class="md-list-item-h30 nodes-item">
+                            <md-checkbox class="md-primary md-checkbox-ms"></md-checkbox>
+                            <p>127.0.0.1</p>
+                        </md-list-item>
+                        <md-list-item class="md-list-item-h30 nodes-item">
+                            <md-checkbox class="md-primary md-checkbox-ms"></md-checkbox>
+                            <p>192.168.101.100:8080</p>
+                        </md-list-item>
+                        <md-list-item class="md-list-item-h30 nodes-item">
+                            <md-checkbox class="md-primary md-checkbox-ms"></md-checkbox>
+                            <p>192.168.101.100:8080</p>
+                        </md-list-item>
 
-            <div class="list-select">
-                <a href="javascript:void(0)" ng-click="selector.multi = true">多选</a> | <a href="javascript:void(0)" ng-click="selector.all = true">全选</a>
-            </div>
+                    </md-list>
+                </md-tab>
+                <md-tab label="tags">
+                    <div class="">
+                        <ul>
+                            <li>127.0.0.1</li>
+                            <li>127.0.0.2</li>
+                        </ul>
+                    </div>
+                </md-tab>
+            </md-tabs>
+        </div>
 
-            <md-list flex class="list">
-                <md-list-item class="list-item" ng-click="null">
-                    127.0.0.1:8080
-                    <span class="flex"></span>
-                    <md-checkbox md-no-ink class="md-primary" aria-label="12" ng-value="1"></md-checkbox>
+        <div flex="20" class="ml20">
+            <md-list class="options-list">
+                <md-subheader class="md-no-sticky">options</md-subheader>
+                <md-list-item class="md-list-item-h30">
+                    <p>goroutines</p>
+                    <md-checkbox class="md-secondary md-primary"></md-checkbox>
                 </md-list-item>
-                <md-list-item class="list-item list-item-focus" ng-click="null">
-                    127.0.0.2:8080
+                <md-list-item class="md-list-item-h30">
+                    <md-checkbox class="md-secondary md-primary"></md-checkbox>
+                    <p>heap</p>
+
                 </md-list-item>
-                <md-list-item class="list-item" ng-click="null">
-                    127.0.0.3:8080
+                <md-list-item class="md-list-item-h30">
+                    <p>block</p>
+                    <md-checkbox class="md-secondary md-primary"></md-checkbox>
                 </md-list-item>
             </md-list>
-        </md-sidenav>
-        <div ng-view class="content"></div>
+        </div>
     </md-content>
+
+    <div ng-view class="content"></div>
+
 
     <!--
     <div class="footer">
