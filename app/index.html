@@ -39,28 +39,30 @@
 
     <md-content layout="row" flex class="container">
         <md-sidenav class="md-sidenav-left sidenav" md-component-id="left" md-is-locked-open="true" md-disable-backdrop md-whiteframe="4">
-          <div layout="row" class="search">
-            <md-input-container md-no-float class="md-block" flex>
-                <input placeholder="Search">
-            </md-input-container>
-            <md-input-container md-no-float>
-                <md-select ng-model="selectedToppings" multiple placeholder="tag">
+            <div layout="row" class="search">
+                <md-input-container md-no-float class="md-block" flex>
+                    <input placeholder="Search">
+                </md-input-container>
+                <md-input-container md-no-float>
+                    <md-select ng-model="selectedToppings" multiple placeholder="tag">
                         <md-option ng-value="1">value</md-option>
                         <md-option ng-value="2">selected</md-option>
                         <md-option ng-value="3">multiple</md-option>
-                </md-select>
-            </md-input-container>
-          </div>
+                    </md-select>
+                </md-input-container>
+            </div>
 
             <div class="list-select">
-                <span ng-click="null" class="">多选</span> | <a href="###" ng-click="null">全选</a>
+                <a href="javascript:void(0)" ng-click="selector.multi = true">多选</a> | <a href="javascript:void(0)" ng-click="selector.all = true">全选</a>
             </div>
 
             <md-list flex class="list">
                 <md-list-item class="list-item" ng-click="null">
                     127.0.0.1:8080
+                    <span class="flex"></span>
+                    <md-checkbox md-no-ink class="md-primary" aria-label="12" ng-value="1"></md-checkbox>
                 </md-list-item>
-                <md-list-item class="list-item" ng-click="null">
+                <md-list-item class="list-item list-item-focus" ng-click="null">
                     127.0.0.2:8080
                 </md-list-item>
                 <md-list-item class="list-item" ng-click="null">
