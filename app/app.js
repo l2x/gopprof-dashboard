@@ -10,15 +10,15 @@ angular.module('myApp', [
     'myApp.version'
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
-    $locationProvider.hashPrefix('!');
+        $locationProvider.hashPrefix('!');
 
-    $routeProvider.otherwise({
-        redirectTo: '/view1'
+        $routeProvider.otherwise({
+            redirectTo: '/view1'
+        });
+    }])
+    .config(function($mdThemingProvider) {
+        $mdThemingProvider.theme('default')
+            .primaryPalette('blue', {
+                'default': '700',
+            })
     });
-}])
-.config(function($mdThemingProvider) {
-  $mdThemingProvider.theme('default')
-    .primaryPalette('blue', {
-      'default': '700',
-    })
-});
