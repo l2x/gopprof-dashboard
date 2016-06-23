@@ -8,54 +8,60 @@ angular.module('myApp.view1', ['ngRoute'])
         controller: 'View1Ctrl'
     });
 }])
-.controller('View1Ctrl', function($scope) {
-    //This is not a highcharts object. It just looks a little like one!
-    $scope.chartConfig = {
+.controller('View1Ctrl', function($scope, $timeout) {
+  $scope.chartConfig = {
         options: {
-            //This is the Main Highcharts chart config. Any Highchart options are valid here.
-            //will be overriden by values specified below.
             chart: {
-                type: 'bar'
+                zoomType: 'x'
             },
-            tooltip: {
-                style: {
-                    padding: 10,
-                    fontWeight: 'bold'
-                }
+            rangeSelector: {
+                enabled: true
+            },
+            navigator: {
+                enabled: true
             }
         },
-        //The below properties are watched separately for changes.
-
-        //Series object (optional) - a list of series using normal Highcharts series options.
-        series: [{
-            data: [10, 15, 12, 8, 7]
-        }],
-        //Title configuration (optional)
+        series: [],
         title: {
             text: 'Hello'
         },
-        //Boolean to control showing loading status on chart (optional)
-        //Could be a string if you want to show specific loading text.
-        loading: false,
-        //Configuration for the xAxis (optional). Currently only one x axis can be dynamically controlled.
-        //properties currentMin and currentMax provided 2-way binding to the chart's maximum and minimum
-        xAxis: {
-            currentMin: 0,
-            currentMax: 20,
-            title: {
-                text: 'values'
-            }
-        },
-        //Whether to use Highstocks instead of Highcharts (optional). Defaults to false.
-        useHighStocks: false,
-        //size (optional) if left out the chart will default to size of the div or something sensible.
-        size: {
-            width: 400,
-            height: 300
-        },
-        //function (optional)
-        func: function(chart) {
-            //setup some logic for the chart
-        }
-    };
+        useHighStocks: true
+    }
+
+    $scope.chartConfig.series.push({
+        id: 1,
+        data: [
+            [1147651200000, 23.15],
+            [1147737600000, 23.01],
+            [1147824000000, 22.73],
+            [1147910400000, 22.83],
+            [1147996800000, 22.56],
+            [1148256000000, 22.88],
+            [1148342400000, 22.79],
+            [1148428800000, 23.50],
+            [1148515200000, 23.74],
+            [1148601600000, 23.72],
+            [1148947200000, 23.15],
+            [1149033600000, 22.65]
+        ]
+    },   {
+        id: 2,
+        data: [
+            [1147651200000, 25.15],
+            [1147737600000, 25.01],
+            [1147824000000, 25.73],
+            [1147910400000, 25.83],
+            [1147996800000, 25.56],
+            [1148256000000, 25.88],
+            [1148342400000, 25.79],
+            [1148428800000, 25.50],
+            [1148515200000, 26.74],
+            [1148601600000, 26.72],
+            [1148947200000, 26.15],
+            [1149033600000, 26.65]
+        ]
+
+    }
+
+    );
 });
