@@ -4,6 +4,7 @@
 angular.module('myApp', [
     'ngRoute',
     'ngMaterial',
+    'highcharts-ng',
     'myApp.view1',
     'myApp.view2',
     'myApp.version'

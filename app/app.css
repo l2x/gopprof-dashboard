@@ -27,13 +27,12 @@ md-list-item ._md-list-item-inner> .md-checkbox-ms {
     margin-bottom: 1px;
     margin-top: 1px;
 }
-.md-tabs-ms md-tabs-canvas, .md-tabs-ms md-pagination-wrapper, .nodes-toolbar{
-  height: 44px
+.md-tabs-ms md-tabs-canvas, .md-tabs-ms md-pagination-wrapper, .nodes-toolbar {
+    height: 44px
 }
 .options-list ._md-subheader-inner {
-  padding-top:7px
+    padding-top: 7px
 }
-
 .ml20 {
     margin-left: 20px
 }
@@ -49,19 +48,18 @@ md-list-item ._md-list-item-inner> .md-checkbox-ms {
     position: absolute;
     right: 0px;
     width: 200px;
-
     z-index: 1;
 }
 .nodes-toolbar md-input-container {
-  margin:0;
+    margin: 0;
 }
 .nodes-toolbar .md-errors-spacer {
-  display: none
+    display: none
 }
-.nodes-toolbar span{
-  color:#ccc;
-  padding:0 5px;
+.nodes-toolbar span {
+    color: #ccc;
+    padding: 0 5px;
 }
-.nodes-toolbar a{
-  text-decoration: none
+.nodes-toolbar a {
+    text-decoration: none
 }
