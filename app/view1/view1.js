@@ -12,24 +12,29 @@ angular.module('myApp.view1', ['ngRoute'])
   $scope.chartConfig = {
         options: {
             chart: {
-                zoomType: 'x'
+                zoomType: 'x',
             },
             rangeSelector: {
                 enabled: true
             },
             navigator: {
                 enabled: true
-            }
+            },
+            legend: {
+              enabled: true
+           }
         },
         series: [],
         title: {
             text: 'Hello'
         },
+
         useHighStocks: true
     }
 
     $scope.chartConfig.series.push({
         id: 1,
+        name:"line1",
         data: [
             [1147651200000, 23.15],
             [1147737600000, 23.01],
@@ -46,6 +51,7 @@ angular.module('myApp.view1', ['ngRoute'])
         ]
     },   {
         id: 2,
+        name:"line2",
         data: [
             [1147651200000, 25.15],
             [1147737600000, 25.01],
