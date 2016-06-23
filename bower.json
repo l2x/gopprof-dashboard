@@ -16,6 +16,8 @@
         "angular-material": "~1.1.0",
         "highcharts":"~4.2.5",
         "highcharts-ng": "~0.0.11",
-        "jquery":"~2.2.4"
+        "jquery":"~2.2.4",
+        "angular-datatables":"~0.5.4",
+        "datatables.net":"~1.10.12"
     }
 }
