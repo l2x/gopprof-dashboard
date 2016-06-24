@@ -18,6 +18,6 @@
         "highcharts-ng": "~0.0.11",
         "jquery":"~2.2.4",
         "angular-datatables":"~0.5.4",
-        "datatables.net":"~1.10.12"
+        "datatables":"~1.10.12"
     }
 }
