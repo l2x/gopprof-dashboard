@@ -12,116 +12,51 @@
     <title>My AngularJS App</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
-    <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
-    <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">
-    <link rel="stylesheet" href="bower_components/datatables/media/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="bower_components/angular-datatables/dist/css/angular-datatables.min.css">
 
-
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap-material-design/dist/css/bootstrap-material-design.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap-material-design/dist/css/ripples.min.css">
     <link rel="stylesheet" href="app.css">
-    <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+
 </head>
 
 <body>
-    <md-toolbar class="md-whiteframe-glow-z1 header">
-        <div class="md-toolbar-tools">
-            <md-sidenav class="md-sidenav-left" md-is-locked-open="true">
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
 
-            </md-sidenav>
-            <ul layout="row" layout-align="start center" class="menu">
-                <li><a href="#!/view1">stats</a></li>
-                <li><a href="#!/view2">pprof</a></li>
-                <li><a href="#!/view3">setting</a></li>
-            </ul>
-            <span flex></span>
-            <md-button class="md-icon-button" aria-label="More">
-                <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
-            </md-button>
-        </div>
-    </md-toolbar>
-
-    <md-content layout="row" class="md-padding pt0">
-        <div flex style="position:relative">
-            <div class="nodes-toolbar" layout="row" layout-align="start center">
-                <md-input-container md-no-float class="md-block">
-                    <input placeholder="Filter">
-                </md-input-container>
-                <span> | <span>
-                <a href="javascript:void(0)" >全选</a>
+    <div class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="javascript:void(0)">Brand</a>
             </div>
-            <md-tabs md-border-bottom md-autoselect md-dynamic-height class="md-tabs-ms">
-                <md-tab label="nodes">
-                    <md-list class="clearfix">
-                        <md-list-item class="md-list-item-h30 nodes-item">
-                            <md-checkbox class="md-primary md-checkbox-ms"></md-checkbox>
-                            <p>127.0.0.1</p>
-                        </md-list-item>
-                        <md-list-item class="md-list-item-h30 nodes-item">
-                            <md-checkbox class="md-primary md-checkbox-ms"></md-checkbox>
-                            <p>192.168.101.100:8080</p>
-                        </md-list-item>
-                        <md-list-item class="md-list-item-h30 nodes-item">
-                            <md-checkbox class="md-primary md-checkbox-ms"></md-checkbox>
-                            <p>192.168.101.100:8080</p>
-                        </md-list-item>
-
-                    </md-list>
-                </md-tab>
-                <md-tab label="tags">
-                    <div class="">
-                        <ul>
-                            <li>127.0.0.1</li>
-                            <li>127.0.0.2</li>
-                        </ul>
-                    </div>
-                </md-tab>
-            </md-tabs>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav">
+                    <li active-link="active"><a href="#/view1" >Active</a></li>
+                    <li active-link="active"><a href="#/view2" >Link</a></li>
+                </ul>
+            </div>
         </div>
+    </div>
 
-        <div flex="20" class="ml20">
-            <md-list class="options-list">
-                <md-subheader class="md-no-sticky">options</md-subheader>
-                <md-list-item class="md-list-item-h30">
-                    <p>goroutines</p>
-                    <md-checkbox class="md-secondary md-primary"></md-checkbox>
-                </md-list-item>
-                <md-list-item class="md-list-item-h30">
-                    <md-checkbox class="md-secondary md-primary"></md-checkbox>
-                    <p>heap</p>
+    <div ng-view></div>
+    
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/bootstrap-material-design/dist/js/material.min.js"></script>
+    <script src="bower_components/bootstrap-material-design/dist/js/ripples.min.js"></script>
+    <script src="bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="bower_components/highcharts/highstock.js"></script>
 
-                </md-list-item>
-                <md-list-item class="md-list-item-h30">
-                    <p>block</p>
-                    <md-checkbox class="md-secondary md-primary"></md-checkbox>
-                </md-list-item>
-            </md-list>
-        </div>
-    </md-content>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
 
-    <div ng-view class="content"></div>
+    <script src="bower_components/highcharts-ng/dist/highcharts-ng.min.js"></script>
+    <script src="bower_components/angular-datatables/dist/angular-datatables.min.js"></script>
 
-    <!--
-    <div class="footer">
-        <div>Angular seed app: v<span app-version></span></div>
-        </div>
-        -->
-        <script src="bower_components/jquery/dist/jquery.min.js"></script>
-        <script src="bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
-        <script src="bower_components/highcharts/highstock.js"></script>
-        <script src="bower_components/angular/angular.min.js"></script>
-        <script src="bower_components/angular-route/angular-route.min.js"></script>
-        <script src="bower_components/angular-aria/angular-aria.min.js"></script>
-        <script src="bower_components/angular-animate/angular-animate.min.js"></script>
-        <script src="bower_components/angular-material/angular-material.min.js"></script>
-        <script src="bower_components/highcharts-ng/dist/highcharts-ng.min.js"></script>
-        <script src="bower_components/angular-datatables/dist/angular-datatables.min.js"></script>
-        <script src="app.js"></script>
-        <script src="view1/view1.js"></script>
-        <script src="view2/view2.js"></script>
-        <script src="components/version/version.js"></script>
-        <script src="components/version/version-directive.js"></script>
-        <script src="components/version/interpolate-filter.js"></script>
+    <script src="app.js"></script>
+    <script src="view1/view1.js"></script>
+    <script src="view2/view2.js"></script>
 </body>
 
 </html>

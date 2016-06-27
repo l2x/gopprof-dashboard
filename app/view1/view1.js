@@ -1,72 +1,14 @@
 'use strict';
 
 angular.module('myApp.view1', ['ngRoute'])
-    .config(['$routeProvider', function($routeProvider) {
-        $routeProvider.when('/view1', {
-            templateUrl: 'view1/view1.html',
-            controller: 'View1Ctrl'
-        });
-    }])
-    .controller('View1Ctrl', function($scope, $timeout) {
-        $scope.chartConfig = {
-            options: {
-                chart: {
-                    zoomType: 'x',
-                },
-                rangeSelector: {
-                    enabled: true
-                },
-                navigator: {
-                    enabled: true
-                },
-                legend: {
-                    enabled: true
-                }
-            },
-            series: [],
-            title: {
-                text: 'Hello'
-            },
 
-            useHighStocks: true
-        }
+.config(['$routeProvider', function($routeProvider) {
+  $routeProvider.when('/view1', {
+    templateUrl: 'view1/view1.html',
+    controller: 'View1Ctrl'
+  });
+}])
 
-        $scope.chartConfig.series.push({
-                id: 1,
-                name: "line1",
-                data: [
-                    [1147651200000, 23.15],
-                    [1147737600000, 23.01],
-                    [1147824000000, 22.73],
-                    [1147910400000, 22.83],
-                    [1147996800000, 22.56],
-                    [1148256000000, 22.88],
-                    [1148342400000, 22.79],
-                    [1148428800000, 23.50],
-                    [1148515200000, 23.74],
-                    [1148601600000, 23.72],
-                    [1148947200000, 23.15],
-                    [1149033600000, 22.65]
-                ]
-            },   {
-                id: 2,
-                name: "line2",
-                data: [
-                    [1147651200000, 25.15],
-                    [1147737600000, 25.01],
-                    [1147824000000, 25.73],
-                    [1147910400000, 25.83],
-                    [1147996800000, 25.56],
-                    [1148256000000, 25.88],
-                    [1148342400000, 25.79],
-                    [1148428800000, 25.50],
-                    [1148515200000, 26.74],
-                    [1148601600000, 26.72],
-                    [1148947200000, 26.15],
-                    [1149033600000, 26.65]
-                ]
-
-            }
-
-        );
-    });
+.controller('View1Ctrl', function($location) {
+  //console.log($location.path());
+});
