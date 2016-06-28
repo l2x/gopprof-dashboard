@@ -1,5 +1,41 @@
 /* app css stylesheet */
-.nav>li{
-  width: 100px;
-  text-align: center;
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
+.nav>li {
+    width: 100px;
+    text-align: center;
+}
+
+.sidebar {
+    font-size: 12px;
+}
+.sidebar table tr:hover {
+    cursor: pointer;
+}
+.filter {
+    background: #fff;
+    width: 60%;
+    border: 1px solid rgb(211, 211, 211);
+    padding: 3px 7px;
+    height: 24px;
+    line-height: 24px;
+    margin-bottom: 10px;
+    margin-left: 8px;
+}
+.filter:focus {
+    border-color: #009688;
+}
+.sidebar input[type=checkbox], .sidebar input[type=radio] {
+  margin: 0px;
+}
+.content{
+  padding-bottom: 20px
 }

@@ -5,6 +5,8 @@ var myApp = angular.module('myApp', [
     'ngRoute',
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
+        $.material.init()
+
         //$locationProvider.hashPrefix('!');
         $routeProvider
             .when('/', {
@@ -40,4 +42,36 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
                 });
             }
         };
-    }]);
+    }])
+    .directive('sidebar', function() {
+      return {
+        restrict: 'E',
+        link: function(scope, el, attrs, controller) {
+            scope.sidebarSelect  = function(nodes, node) {
+              node.checked = node.checked ? false : true;
+              if(!node.checked) {
+                scope.allChecked = false;
+                return;
+              }
+              var ak = true
+              angular.forEach(nodes, function(node, k) {
+                if(!node.checked) {
+                  ak = false;
+                  return;
+                }
+              })
+              scope.allChecked = ak;
+            };
+            scope.sidebarSelectAll = function(nodes) {
+               scope.allChecked = scope.allChecked ? false : true;
+               angular.forEach(nodes, function(node, k) {
+                 node.checked = scope.allChecked
+               })
+            }
+        },
+        templateUrl: function(elem, attr) {
+          return 'common/sidebar.html';
+        }
+      }
+    })
+;
