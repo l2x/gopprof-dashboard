@@ -3,6 +3,11 @@
 myApp
     .factory('ServiceNode', function($resource) {
         return {
-            Nodes: $resource("api/nodes"),
+            Nodes: $resource("https://api.github.com/orgs/mozilla/repos", {}, {
+                query: {
+                    method: "get",
+                    isArray: true
+                }
+            }),
         };
     });

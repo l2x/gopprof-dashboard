@@ -71,11 +71,11 @@ myApp
                     external_ip: "172.0.0.1"
                 }, ];
 
-                ServiceNode.Nodes.get({}, function(response) {
+                ServiceNode.Nodes.query({}, function(response) {
                     console.log("ok", response)
+                    scope.nodes = data
                 }, function(response) {
                     console.log("err", response)
-                    scope.nodes = data
                 })
             },
             templateUrl: function(elem, attr) {
