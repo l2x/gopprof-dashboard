@@ -15,20 +15,20 @@ myApp.controller('StatsCtrl', function($scope, Service) {
 
     function stats(nodes, options, date) {
         if (nodes.length == 0) {
-            return
+            //return
         }
-        var opt = false;
+        var opt = [];
         angular.forEach(options, function(v, k) {
             if (v === true) {
-                opt = true;
+                opt.push(v);
             }
         })
-        if (opt == false) {
+        if (opt.length == 0) {
             return;
         }
         var data = {
             "node": nodes,
-            "option": options,
+            "option": opt,
             "date": date
         }
 
@@ -36,11 +36,7 @@ myApp.controller('StatsCtrl', function($scope, Service) {
         $scope.loading = true;
         Service.Stats.query(data, function(response) {
             $scope.loading = false;
-            if (response.errno != 0) {
-              console.log(response);
-              scope.errmsg = response.errmsg;
-              return
-            }
+
             // TODO render chart
 
         }, function(e) {
@@ -48,7 +44,6 @@ myApp.controller('StatsCtrl', function($scope, Service) {
             console.log(e)
             $scope.errmsg = e.config.method + " " + e.config.url + " " + e.status + " " + e.statusText;
         })
-
 
         var seriesOptions = [],
             seriesCounter = 0,

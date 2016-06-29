@@ -27,5 +27,5 @@ config(['$locationProvider', '$routeProvider', '$resourceProvider', function($lo
             redirectTo: '/'
         });
 }])
-.constant("CONF", {baseUrl:"http://127.0.0.1:8080"})
+.constant("CONF", {baseUrl:"http://127.0.0.1:8980"})
 ;

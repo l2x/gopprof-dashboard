@@ -86,12 +86,7 @@ myApp
                 }
 
                 Service.Nodes.query({}, function(response) {
-                    if (response.errno != 0) {
-                      console.log(response);
-                      scope.sidebar_errmsg = response.errmsg;
-                      return
-                    }
-                    scope.nodes = response.data
+                    scope.nodes = response
                 }, function(e) {
                     console.log(e)
                     scope.sidebar_errmsg = e.config.method + " " + e.config.url + " " + e.status + " " + e.statusText;
