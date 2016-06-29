@@ -1,6 +1,21 @@
 <div class="row">
     <sidebar></sidebar>
     <div class="col-sm-8">
-        xxx
+
+        <div class="options">
+            <label title="goroutine number">
+                <input type="checkbox" ng-model="options.goroutine" ng-change="onSelect()"> goroutine
+            </label>
+            <label title="bytes allocated and not yet freed">
+                <input type="checkbox" ng-model="options.heap" ng-change="onSelect()"> heap
+            </label>
+            <label title="GC pause durations">
+                <input type="checkbox" ng-model="options.gc" ng-change="onSelect()"> gc
+            </label>
+        </div>
+        <datepicker></datepicker>
+
+        <div></div>
+
     </div>
 </div>

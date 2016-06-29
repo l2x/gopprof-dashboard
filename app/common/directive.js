@@ -19,7 +19,38 @@ myApp
             }
         };
     }])
-    .directive('sidebar', function(ServiceNode) {
+    .directive('datepicker', function() {
+        return {
+            restrict: 'E',
+            link: function($scope, $el, $attrs, $controller) {
+                $scope.dateSelect = function(s, $event) {
+                    if (typeof $event != "undefined") {
+                        var elm = angular.element($event.currentTarget || $event.srcElement);
+                        elm.parent().find('a').removeClass('active')
+                        elm.addClass('active')
+                    }
+                    var n = new Date();
+                    $scope.date = {
+                        start: n.setTime(n.getTime() - s),
+                        end: new Date(),
+                    }
+                }
+                $scope.dateSelect(3600000)
+            },
+            templateUrl: function(elem, attr) {
+                return 'common/datepicker.html';
+            }
+        }
+    })
+    .directive('loadingbar', function() {
+        return {
+            restrict: 'E',
+            templateUrl: function(elem, attr) {
+                return 'common/loadingbar.html';
+            }
+        }
+    })
+    .directive('sidebar', function(Service) {
         return {
             restrict: 'E',
             link: function(scope, el, attrs, controller) {
@@ -71,12 +102,11 @@ myApp
                     external_ip: "172.0.0.1"
                 }, ];
 
-                ServiceNode.Nodes.query({}, function(response) {
-                    console.log("ok", response)
+                Service.Nodes.query({}, function(response) {
                     scope.nodes = data
-                }, function(response) {
-                    console.log("err", response)
-                })
+                }, function(e) {
+                    console.log(e)
+                });
             },
             templateUrl: function(elem, attr) {
                 return 'common/sidebar.html';

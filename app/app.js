@@ -3,7 +3,8 @@
 // Declare app level module which depends on views, and components
 var myApp = angular.module('myApp', [
     'ngRoute',
-    'ngResource'
+    'ngResource',
+    'ADM-dateTimePicker'
 ]).
 config(['$locationProvider', '$routeProvider', '$resourceProvider', function($locationProvider, $routeProvider, $resourceProvider) {
     $.material.init()
