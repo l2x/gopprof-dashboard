@@ -106,6 +106,7 @@ myApp
                     scope.nodes = data
                 }, function(e) {
                     console.log(e)
+                    scope.sidebar_errmsg = e.config.method + " " + e.config.url + " " + e.status + " " + e.statusText;
                 });
             },
             templateUrl: function(elem, attr) {

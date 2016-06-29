@@ -64,7 +64,12 @@
     margin-bottom: 0;
     margin-right: 20px;
 }
-
+.errmsg {
+  font-size: 14px
+}
+.chartbox {
+   padding: 20px 15px;
+}
 
 .showbox {
   position: relative;

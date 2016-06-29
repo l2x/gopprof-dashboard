@@ -30,6 +30,6 @@
         </table>
     </div>
 
-    <loadingbar ng-if="!nodes"></loadingbar>
-    <p></p>
+    <loadingbar ng-if="!nodes && !sidebar_errmsg"></loadingbar>
+    <p class="errmsg text-center text-danger" ng-if="sidebar_errmsg">{{sidebar_errmsg}}</p>
 </div>
