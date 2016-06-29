@@ -1,15 +1,15 @@
 'use strict';
 
 myApp
-    .factory('Service', function($resource) {
+    .factory('Service', function($resource, CONF) {
         return {
-            Nodes: $resource("https://api.github.com/orgs/mozilla/repos", {}, {
+            Nodes: $resource(CONF.baseUrl + "/nodes", {}, {
                 query: {
                     method: "get",
                     isArray: true
                 }
             }),
-            Stats: $resource("https://api.github.com/orgs/mozilla/repos", {}, {
+            Stats: $resource(CONF.baseUrl + "/stats", {}, {
                 query: {
                     method: "post",
                     isArray: true

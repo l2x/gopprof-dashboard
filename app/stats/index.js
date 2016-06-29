@@ -14,7 +14,6 @@ myApp.controller('StatsCtrl', function($scope, Service) {
     }
 
     function stats(nodes, options, date) {
-        console.log(nodes, options, date)
         if (nodes.length == 0) {
             return
         }
@@ -37,7 +36,13 @@ myApp.controller('StatsCtrl', function($scope, Service) {
         $scope.loading = true;
         Service.Stats.query(data, function(response) {
             $scope.loading = false;
-            console.log(response);
+            if (response.errno != 0) {
+              console.log(response);
+              scope.errmsg = response.errmsg;
+              return
+            }
+            // TODO render chart
+
         }, function(e) {
             $scope.loading = false;
             console.log(e)

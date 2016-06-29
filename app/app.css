@@ -20,6 +20,7 @@
 }
 .sidebar {
     font-size: 12px;
+    overflow-x: hidden;
 }
 .sidebar table tr:hover {
     cursor: pointer;
@@ -68,7 +69,7 @@
   font-size: 14px
 }
 .chartbox {
-   padding: 20px 15px;
+   padding: 20px 5px 20px 15px;
 }
 
 .showbox {
