@@ -39,34 +39,35 @@ myApp.controller('StatsCtrl', function($scope, Service) {
         $scope.loading = true;
         Service.Stats.query(data, function(response) {
             $scope.loading = false;
-            // TODO render chart
             angular.forEach(response, function(v) {
-              createChart(v.type, v.data)
+                createChart(v.type, v.data)
             })
         }, function(e) {
             $scope.loading = false;
             console.log(e)
             $scope.errmsg = e.config.method + " " + e.config.url + " " + e.status + " " + e.statusText;
         })
-        function createChart(title, series) {
-            var el = $('<div class="jumbotron"></div>')
-            $("#chart_container").append(el)
-            $(el).highcharts('StockChart', {
-                title:{
-                  text: title
-                },
-                legend: {
-                    enabled: true
-                },
-                series: series
-            });
-        }
-
     }
 
+    function createChart(title, series) {
+        var el = $('<div class="jumbotron"></div>')
+        $("#chart_container").append(el)
+        $(el).highcharts('StockChart', {
+            title: {
+                text: title
+            },
+            legend: {
+                enabled: true
+            },
+            series: series
+        });
+    }
 
-
-
+    Highcharts.setOptions({
+        global: {
+            useUTC: false
+        }
+    });
 
     var timer = null;
     $scope.$on("$destroy", function() {

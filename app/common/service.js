@@ -15,5 +15,11 @@ myApp
                     isArray: true
                 }
             }),
+            Profile: $resource(CONF.baseUrl + "/pprof", {}, {
+                query: {
+                    method: "post",
+                    isArray: true
+                }
+            }),
         };
     });

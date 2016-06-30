@@ -1,1 +1,27 @@
-<p>{{ greeting }}</p>
+<div class="row">
+    <sidebar></sidebar>
+    <div class="col-sm-8">
+      <div class="options">
+          <label title="CPU profile">
+              <input type="checkbox" ng-model="options.profile" ng-change="onSelect()"> cpu
+          </label>
+          <label title="heap profile">
+              <input type="checkbox" ng-model="options.heap" ng-change="onSelect()"> heap
+          </label>
+          <label title="goroutine blocking profile">
+              <input type="checkbox" ng-model="options.block" ng-change="onSelect()"> block
+          </label>
+          <label title="trace">
+              <input type="checkbox" ng-model="options.trace" ng-change="onSelect()"> trace
+          </label>
+      </div>
+      <datepicker></datepicker>
+
+      <div class="row chartbox">
+          <p class="errmsg text-center text-danger" ng-show="!loading && errmsg">{{errmsg}}</p>
+          <loadingbar ng-show="loading"></loadingbar>
+          <div id="chart_container">
+          </div>
+      </div>
+    </div>
+</div>
