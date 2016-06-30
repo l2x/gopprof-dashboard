@@ -15,61 +15,53 @@ myApp.controller('StatsCtrl', function($scope, Service) {
 
     function stats(nodes, options, date) {
         if (nodes.length == 0) {
-            //return
+            return
         }
         var opt = [];
         angular.forEach(options, function(v, k) {
             if (v === true) {
-                opt.push(v);
+                opt.push(k);
             }
         })
         if (opt.length == 0) {
             return;
         }
         var data = {
-            "node": nodes,
-            "option": opt,
-            "date": date
+            "nodes": nodes,
+            "options": opt,
+            "date": {
+                "start": (new Date(date.start).getTime() / 1000),
+                "end": (new Date(date.end).getTime() / 1000)
+            }
         }
 
         $("#chart_container").empty()
         $scope.loading = true;
         Service.Stats.query(data, function(response) {
             $scope.loading = false;
-
             // TODO render chart
-
+            angular.forEach(response, function(v) {
+              createChart(v.type, v.data)
+            })
         }, function(e) {
             $scope.loading = false;
             console.log(e)
             $scope.errmsg = e.config.method + " " + e.config.url + " " + e.status + " " + e.statusText;
         })
-
-        var seriesOptions = [],
-            seriesCounter = 0,
-            names = ['MSFT', 'AAPL', 'GOOG'];
-        function createChart() {
+        function createChart(title, series) {
             var el = $('<div class="jumbotron"></div>')
             $("#chart_container").append(el)
             $(el).highcharts('StockChart', {
+                title:{
+                  text: title
+                },
                 legend: {
                     enabled: true
                 },
-                series: seriesOptions
+                series: series
             });
         }
-        $.each(names, function(i, name) {
-            $.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=' + name.toLowerCase() + '-c.json&callback=?', function(data) {
-                seriesOptions[i] = {
-                    name: name,
-                    data: data
-                };
-                seriesCounter += 1;
-                if (seriesCounter === names.length) {
-                    createChart();
-                }
-            });
-        });
+
     }
 
 
