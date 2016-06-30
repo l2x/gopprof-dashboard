@@ -1,6 +1,6 @@
 'use strict';
 
-myApp.controller('PprofCtrl', function($scope, Service) {
+myApp.controller('PprofCtrl', function($scope, Service, DTOptionsBuilder, DTColumnDefBuilder) {
     $scope.options = {
         profile: true,
         heap: true,
@@ -36,13 +36,10 @@ myApp.controller('PprofCtrl', function($scope, Service) {
             }
         }
 
-        $("#chart_container").empty()
         $scope.loading = true;
         Service.Profile.query(data, function(response) {
             $scope.loading = false;
-            angular.forEach(response, function(v) {
-                createTable()
-            })
+            $scope.pprofs = response;
         }, function(e) {
             $scope.loading = false;
             console.log(e)
@@ -50,9 +47,11 @@ myApp.controller('PprofCtrl', function($scope, Service) {
         })
     }
 
-    function createTable() {
-
-    }
+    $scope.dtOptions = DTOptionsBuilder.newOptions().withPaginationType('full_numbers')
+    .withDisplayLength(10).withOption('order', [0, 'desc']);
+    $scope.dtColumnDefs = [
+        DTColumnDefBuilder.newColumnDef(3).notSortable()
+    ];
 
     var timer = null;
     $scope.$on("$destroy", function() {

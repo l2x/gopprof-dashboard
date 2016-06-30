@@ -79,7 +79,7 @@ myApp
                     var sn = []
                     angular.forEach(scope.nodes, function(node) {
                         if (node.checked) {
-                            sn.push(node.nodeid)
+                            sn.push(node.NodeID)
                         }
                     });
                     return sn;

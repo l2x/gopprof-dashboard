@@ -56,135 +56,146 @@
     padding-right: 5px;
 }
 .options-date input {
-    padding-top:2px;
-    padding-left:5px;
+    padding-top: 2px;
+    padding-left: 5px;
     width: 130px;
 }
-.options-date .btn-group{
+.options-date .btn-group {
     margin-top: 0;
     margin-bottom: 0;
     margin-right: 20px;
 }
 .errmsg {
-  font-size: 14px
+    font-size: 14px
 }
 .chartbox {
-   padding: 20px 5px 20px 15px;
+    padding: 20px 5px 20px 15px;
 }
-
+.chartbox table.dataTable thead th {
+    font-weight: normal;
+}
+.chartbox table.dataTable thead th, .chartbox table.dataTable thead td {
+    border-bottom: 2px solid #ddd;
+}
+.chartbox table.dataTable.no-footer {
+    border-bottom: 1px solid #ddd;
+}
+.chartbox .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+    background: #ddd;
+}
+.chartbox label {
+    font-size: 14px
+}
+.chartbox input {
+    border: 1px solid rgb(211, 211, 211);
+    height: 24px;
+    line-height: 24px;
+    padding: 3px 7px;
+}
 .showbox {
-  position: relative;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 5%;
+    position: relative;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 5%;
 }
-
 .loader {
-  position: relative;
-  margin: 0px auto;
-  width: 100px;
+    position: relative;
+    margin: 0px auto;
+    width: 100px;
 }
 .loader:before {
-  content: '';
-  display: block;
-  padding-top: 100%;
+    content: '';
+    display: block;
+    padding-top: 100%;
 }
-
 .circular {
-  -webkit-animation: rotate 2s linear infinite;
-          animation: rotate 2s linear infinite;
-  height: 100%;
-  -webkit-transform-origin: center center;
-          transform-origin: center center;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
+    -webkit-animation: rotate 2s linear infinite;
+    animation: rotate 2s linear infinite;
+    height: 100%;
+    -webkit-transform-origin: center center;
+    transform-origin: center center;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
 }
-
 .path {
-  stroke-dasharray: 1, 200;
-  stroke-dashoffset: 0;
-  -webkit-animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
-          animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
-  stroke-linecap: round;
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+    -webkit-animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+    animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+    stroke-linecap: round;
 }
-
 @-webkit-keyframes rotate {
-  100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-  }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
 }
-
 @keyframes rotate {
-  100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-  }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
 }
 @-webkit-keyframes dash {
-  0% {
-    stroke-dasharray: 1, 200;
-    stroke-dashoffset: 0;
-  }
-  50% {
-    stroke-dasharray: 89, 200;
-    stroke-dashoffset: -35px;
-  }
-  100% {
-    stroke-dasharray: 89, 200;
-    stroke-dashoffset: -124px;
-  }
+    0% {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -35px;
+    }
+    100% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -124px;
+    }
 }
 @keyframes dash {
-  0% {
-    stroke-dasharray: 1, 200;
-    stroke-dashoffset: 0;
-  }
-  50% {
-    stroke-dasharray: 89, 200;
-    stroke-dashoffset: -35px;
-  }
-  100% {
-    stroke-dasharray: 89, 200;
-    stroke-dashoffset: -124px;
-  }
+    0% {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -35px;
+    }
+    100% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -124px;
+    }
 }
 @-webkit-keyframes color {
-  100%,
-  0% {
-    stroke: #d62d20;
-  }
-  40% {
-    stroke: #0057e7;
-  }
-  66% {
-    stroke: #008744;
-  }
-  80%,
-  90% {
-    stroke: #ffa700;
-  }
+    100%, 0% {
+        stroke: #d62d20;
+    }
+    40% {
+        stroke: #0057e7;
+    }
+    66% {
+        stroke: #008744;
+    }
+    80%, 90% {
+        stroke: #ffa700;
+    }
 }
 @keyframes color {
-  100%,
-  0% {
-    stroke: #d62d20;
-  }
-  40% {
-    stroke: #0057e7;
-  }
-  66% {
-    stroke: #008744;
-  }
-  80%,
-  90% {
-    stroke: #ffa700;
-  }
+    100%, 0% {
+        stroke: #d62d20;
+    }
+    40% {
+        stroke: #0057e7;
+    }
+    66% {
+        stroke: #008744;
+    }
+    80%, 90% {
+        stroke: #ffa700;
+    }
 }
