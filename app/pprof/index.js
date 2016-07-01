@@ -1,6 +1,6 @@
 'use strict';
 
-myApp.controller('PprofCtrl', function($scope, Service, DTOptionsBuilder, DTColumnDefBuilder) {
+myApp.controller('PprofCtrl', function($scope, $window, Service, CONF, DTOptionsBuilder, DTColumnDefBuilder) {
     $scope.options = {
         profile: true,
         heap: true,
@@ -12,6 +12,12 @@ myApp.controller('PprofCtrl', function($scope, Service, DTOptionsBuilder, DTColu
         timer = setTimeout(function() {
             pprof($scope.selectedNode(), $scope.options, $scope.date)
         }, 600)
+    }
+
+    $scope.download = function(type, data) {
+        data.downloading = true
+        $window.open(CONF.baseUrl + "/download?type="+type+"&data="+angular.toJson(data), '_blank');
+        data.downloading = false
     }
 
     function pprof(nodes, options, date) {

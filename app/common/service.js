@@ -20,6 +20,6 @@ myApp
                     method: "post",
                     isArray: true
                 }
-            }),
+            })
         };
     });

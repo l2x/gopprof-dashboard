@@ -27,6 +27,7 @@
                             <th>Created</th>
                             <th>NodeID</th>
                             <th>Type</th>
+                            <th>Go Version</th>
                             <th>Files</th>
                         </tr>
                     </thead>
@@ -35,10 +36,20 @@
                             <td>{{ data.Created*1000 | date:'yyyy/MM/dd HH:mm:ss' }}</td>
                             <td>{{ data.NodeID }}</td>
                             <td>{{ data.Type }}</td>
+                            <td>{{ data.Version }}</td>
                             <td class="text-danger" ng-if="data.ErrMsg">{{data.ErrMsg}}</td>
                             <td ng-if="!data.ErrMsg">
-                                <a href="javascript:void(0)">pprof</a>
-                                <a href="javascript:void(0)">pdf</a>
+                                <div class="btn-group">
+                                    <a href="javascript:void(0)" class="btn btn-raised dropdown-toggle btn-xs" data-toggle="dropdown">
+                                        {{data.downloading ? 'downloading...':'download'}}
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="javascript:void(0)" ng-click="download('pdf', data)">pdf</a></li>
+                                        <li><a href="javascript:void(0)" ng-click="download('pprof', data)">pprof file</a></li>
+                                        <li><a href="javascript:void(0)" ng-click="download('bin', data)">binary file</a></li>
+                                    </ul>
+                                </div>
                             </td>
                         </tr>
                 </table>
