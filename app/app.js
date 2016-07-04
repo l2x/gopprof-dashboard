@@ -24,6 +24,10 @@ config(['$locationProvider', '$routeProvider', '$resourceProvider', function($lo
                 templateUrl: 'stats/index.html',
                 controller: 'StatsCtrl'
             })
+            .when('/setting', {
+                templateUrl: 'setting/index.html',
+                controller: 'SettingCtrl'
+            })
             .otherwise({
                 redirectTo: '/'
             });
