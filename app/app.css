@@ -96,6 +96,25 @@
   margin-top:0;
   margin-bottom: 0;
 }
+.setting {
+  font-size: 14px
+}
+.setting legend {
+  margin-bottom: 10px
+}
+.setting .togglebutton{
+  margin-bottom: 5px;
+  margin-left: 15px;
+}
+.setting label{
+  font-size: 14px
+}
+.setting .form-group label.control-label {
+  font-size: 14px
+}
+
+
+
 .showbox {
     position: relative;
     top: 0;

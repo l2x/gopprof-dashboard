@@ -1,0 +1,76 @@
+<div class="row">
+    <sidebar></sidebar>
+    <div class="col-sm-8">
+        <div class="jumbotron setting">
+            <form class="form-horizontal">
+                <fieldset>
+                    <legend>Profile</legend>
+                    <div class="togglebutton">
+                        <label>
+                            <input type="checkbox" ng-model="profile.type.cpu"> CPU
+                        </label>
+                    </div>
+                    <div class="togglebutton">
+                        <label>
+                            <input type="checkbox" ng-model="profile.type.heap"> Heap
+                        </label>
+                    </div>
+                    <div class="togglebutton">
+                        <label>
+                            <input type="checkbox" ng-model="profile.type.block"> Block
+                        </label>
+                    </div>
+                    <div class="togglebutton">
+                        <label>
+                            <input type="checkbox" ng-model="profile.type.trace"> Trace
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="" class="col-sm-1 control-label">Cron</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" placeholder="cron jobs" ng-model="profile.cron">
+                        </div>
+                    </div>
+
+                    <div class="btn-group" ng-init="profile.action='save'">
+                        <a href="javascript:void(0)" class="btn btn-raised" ng-click="saveProfile()">{{profile.action}}</a>
+                        <a href="javascript:void(0)" data-target="#" class="btn btn-raised dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="javascript:void(0)" ng-click="profile.action='save'">Save</a></li>
+                            <li><a href="javascript:void(0)" ng-click="profile.action='once'">Run Once</a></li>
+                            <li><a href="javascript:void(0)" ng-click="profile.action='delete'">Delete</a></li>
+                        </ul>
+                    </div>
+                    <span ng-show="profile.action=='once'">Run Once right now</span>
+                    <span ng-show="profile.action=='delete'">Delete config</span>
+                </fieldset>
+            </form>
+        </div>
+
+        <div class="jumbotron setting">
+            <form class="form-horizontal">
+                <fieldset>
+                    <legend>Stats</legend>
+
+                    <div class="form-group">
+                        <label for="" class="col-sm-1 control-label">Cron</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" placeholder="cron jobs" ng-model="profile.cron">
+                        </div>
+                    </div>
+
+                    <div class="btn-group" ng-init="stats.action='save'">
+                        <a href="javascript:void(0)" class="btn btn-raised" ng-click="saveStats()">{{stats.action}}</a>
+                        <a href="javascript:void(0)" data-target="#" class="btn btn-raised dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="javascript:void(0)" ng-click="stats.action='save'">Save</a></li>
+                            <li><a href="javascript:void(0)" ng-click="stats.action='delete'">Delete</a></li>
+                        </ul>
+                    </div>
+                    <span ng-show="stats.action=='delete'">Delete config</span>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
