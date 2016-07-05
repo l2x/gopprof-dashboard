@@ -50,8 +50,9 @@ myApp.controller('StatsCtrl', function($scope, Service) {
     }
 
     function createChart(title, series) {
-        var el = $('<div class="jumbotron"></div>')
-        $("#chart_container").append(el)
+        var title = titleDetail(title);
+        var el = $('<div class="jumbotron"></div>');
+        $("#chart_container").append(el);
         $(el).highcharts('StockChart', {
             title: {
                 text: title
@@ -61,6 +62,16 @@ myApp.controller('StatsCtrl', function($scope, Service) {
             },
             series: series
         });
+    }
+
+    function titleDetail(title) {
+        switch (title) {
+            case 'heap':
+                return 'heap (byte)';
+            case 'gc':
+                return 'gc pause (ns)'
+        }
+        return title;
     }
 
     Highcharts.setOptions({
