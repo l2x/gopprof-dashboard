@@ -2,7 +2,7 @@
 
 myApp.controller('PprofCtrl', function($scope, $window, Service, CONF, DTOptionsBuilder, DTColumnDefBuilder) {
     $scope.options = {
-        profile: true,
+        cpu: true,
         heap: true,
         trace: true,
         block: true
@@ -16,7 +16,7 @@ myApp.controller('PprofCtrl', function($scope, $window, Service, CONF, DTOptions
 
     $scope.download = function(type, data) {
         data.downloading = true
-        $window.open(CONF.baseUrl + "/download?type="+type+"&data="+angular.toJson(data), '_blank');
+        $window.open(CONF.baseUrl + "/download?type="+type+"&nodeid="+data.NodeID+"&created="+data.Created, '_blank');
         data.downloading = false
     }
 
