@@ -1,0 +1,59 @@
+<div class="row">
+    <sidebar></sidebar>
+    <div class="col-sm-8">
+        <div class="options">
+            <label title="CPU profile">
+                <input type="checkbox" ng-model="options.cpu" ng-change="onSelect()"> cpu
+            </label>
+            <label title="heap profile">
+                <input type="checkbox" ng-model="options.heap" ng-change="onSelect()"> heap
+            </label>
+            <label title="goroutine blocking profile">
+                <input type="checkbox" ng-model="options.block" ng-change="onSelect()"> block
+            </label>
+            <label title="trace">
+                <input type="checkbox" ng-model="options.trace" ng-change="onSelect()"> trace
+            </label>
+        </div>
+        <datepicker></datepicker>
+
+        <div class="row chartbox">
+            <p class="errmsg text-center text-danger" ng-show="!loading && errmsg">{{errmsg}}</p>
+            <loadingbar ng-show="loading"></loadingbar>
+            <div class="jumbotron" ng-show="pprofs && !loading">
+                <table datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" class="row-border hover">
+                    <thead>
+                        <tr>
+                            <th>Created</th>
+                            <th>NodeID</th>
+                            <th>Type</th>
+                            <th>Go Version</th>
+                            <th>Files</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="data in pprofs">
+                            <td>{{ data.Created*1000 | date:'yyyy/MM/dd HH:mm:ss' }}</td>
+                            <td>{{ data.NodeID }}</td>
+                            <td>{{ data.Type }}</td>
+                            <td>{{ data.Version }}</td>
+                            <td class="text-danger" ng-if="data.ErrMsg">{{data.ErrMsg}}</td>
+                            <td ng-if="!data.ErrMsg">
+                                <div class="btn-group">
+                                    <a href="javascript:void(0)" class="btn btn-raised dropdown-toggle btn-xs" data-toggle="dropdown">
+                                        {{data.downloading ? 'downloading...':'download'}}
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="javascript:void(0)" ng-click="download('pdf', data)">pdf</a></li>
+                                        <li><a href="javascript:void(0)" ng-click="download('pprof', data)">pprof file</a></li>
+                                        <li><a href="javascript:void(0)" ng-click="download('bin', data)">binary file</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

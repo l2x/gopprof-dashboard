@@ -1,0 +1,232 @@
+/* app css stylesheet */
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, .5);
+    -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+}
+.btn-group-raised .btn:not(.btn-link).active {
+    -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.18), 0 8px 16px rgba(0, 0, 0, 0.36);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.18), 0 8px 16px rgba(0, 0, 0, 0.36);
+    font-weight: bold;
+}
+.nav>li {
+    width: 100px;
+    text-align: center;
+}
+.sidebar {
+    font-size: 12px;
+    overflow-x: hidden;
+}
+.sidebar table tr:hover {
+    cursor: pointer;
+}
+.filter {
+    background: #fff;
+    width: 60%;
+    border: 1px solid rgb(211, 211, 211);
+    padding: 3px 7px;
+    height: 24px;
+    line-height: 24px;
+    margin-bottom: 10px;
+    margin-left: 8px;
+}
+.filter:focus {
+    border-color: #009688;
+}
+.sidebar input[type=checkbox], .sidebar input[type=radio] {
+    margin: 0px;
+}
+.content {
+    padding-bottom: 20px
+}
+.options {
+    line-height: 26px;
+    margin-bottom: 10px;
+}
+.options label {
+    font-size: 14px;
+    color: rgb(51, 51, 51);
+    font-weight: normal;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.options-date input {
+    padding-top: 2px;
+    padding-left: 5px;
+    width: 130px;
+}
+.options-date .btn-group {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-right: 20px;
+}
+.errmsg {
+    font-size: 14px
+}
+.chartbox {
+    padding: 20px 5px 20px 15px;
+}
+.chartbox table.dataTable thead th {
+    font-weight: normal;
+}
+.chartbox table.dataTable thead th, .chartbox table.dataTable thead td {
+    border-bottom: 2px solid #ddd;
+}
+.chartbox table.dataTable.no-footer {
+    border-bottom: 1px solid #ddd;
+}
+.chartbox .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+    background: #ddd;
+}
+.chartbox label {
+    font-size: 14px
+}
+.chartbox input {
+    border: 1px solid rgb(211, 211, 211);
+    height: 24px;
+    line-height: 24px;
+    padding: 3px 7px;
+}
+.chartbox .btn-group {
+  margin-top:0;
+  margin-bottom: 0;
+}
+.setting {
+  font-size: 14px
+}
+.setting legend {
+  margin-bottom: 10px
+}
+.setting .togglebutton{
+  margin-bottom: 5px;
+  margin-left: 15px;
+}
+.setting label{
+  font-size: 14px
+}
+.setting .form-group label.control-label {
+  font-size: 14px
+}
+loadingbar{
+  display: block;
+  height: 150px;
+}
+.ml15 {
+  margin-left: 15px
+}
+.mt30{
+  margin-top:30px
+}
+
+.showbox {
+    position: relative;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 5%;
+}
+.loader {
+    position: relative;
+    margin: 0px auto;
+    width: 100px;
+}
+.loader:before {
+    content: '';
+    display: block;
+    padding-top: 100%;
+}
+.circular {
+    -webkit-animation: rotate 2s linear infinite;
+    animation: rotate 2s linear infinite;
+    height: 100%;
+    -webkit-transform-origin: center center;
+    transform-origin: center center;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+.path {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+    -webkit-animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+    animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+    stroke-linecap: round;
+}
+@-webkit-keyframes rotate {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+@keyframes rotate {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+@-webkit-keyframes dash {
+    0% {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -35px;
+    }
+    100% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -124px;
+    }
+}
+@keyframes dash {
+    0% {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -35px;
+    }
+    100% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -124px;
+    }
+}
+@-webkit-keyframes color {
+    100%, 0% {
+        stroke: #d62d20;
+    }
+    40% {
+        stroke: #0057e7;
+    }
+    66% {
+        stroke: #008744;
+    }
+    80%, 90% {
+        stroke: #ffa700;
+    }
+}
+@keyframes color {
+    100%, 0% {
+        stroke: #d62d20;
+    }
+    40% {
+        stroke: #0057e7;
+    }
+    66% {
+        stroke: #008744;
+    }
+    80%, 90% {
+        stroke: #ffa700;
+    }
+}
