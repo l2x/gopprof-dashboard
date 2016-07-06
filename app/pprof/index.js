@@ -1,6 +1,7 @@
 'use strict';
 
 myApp.controller('PprofCtrl', function($scope, $window, Service, CONF, DTOptionsBuilder, DTColumnDefBuilder) {
+    $scope.loading = true;
     $scope.options = {
         cpu: true,
         heap: true,

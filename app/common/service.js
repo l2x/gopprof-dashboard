@@ -23,8 +23,14 @@ myApp
             }),
             Setting: $resource(CONF.baseUrl + "/setting", {}, {
                 query: {
-                    method: "get"
+                    method: "get",
+                    isArray: false
                 }
-            })
+            }),
+            SettingSave: $resource(CONF.baseUrl + "/setting/save", {}, {
+                query: {
+                    method: "post"
+                }
+            }),
         };
     });

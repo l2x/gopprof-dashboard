@@ -5,26 +5,32 @@ myApp.controller('SettingCtrl', function($scope, Service) {
         data: {},
         type: {},
     }
-
+    $scope.loading = true;
+    $scope.isdfa = 0
     $scope.onSelect = function(dfa) {
         if (!dfa) {
             var sn = $scope.selectedNode();
-            if (sn.length != 1) {
+            if (sn.length == 0) {
+                $scope.isdfa = -1
+                return
+            }
+            $scope.isdfa = 0
+            if (sn.length > 1) {
                 $scope.profile.data = {}
                 return
             }
-            var data = sn[0];
+            var nodeid = sn[0];
         } else {
-            var data = {
-                NodeID: "_default"
-            }
-            angular.forEach($scope.nodes, function(node){
-              node.checked = false
+            $scope.isdfa = 1
+            var nodeid = "_default"
+
+            angular.forEach($scope.nodes, function(node) {
+                node.checked = false
             })
         }
         $scope.loading = true;
         Service.Setting.query({
-            "nodeid": data.NodeID
+            "nodeid": nodeid
         }, function(response) {
             $scope.loading = false;
             $scope.profile.data = response
@@ -39,6 +45,44 @@ myApp.controller('SettingCtrl', function($scope, Service) {
             $scope.loading = false;
             console.log(e)
             $scope.errmsg = e.config.method + " " + e.config.url + " " + e.status + " " + e.statusText;
+        })
+    }
+
+    $scope.submit = function() {
+        if ($scope.isdfa === -1) {
+            return
+        }
+        var sn = [];
+        if ($scope.isdfa == 1) {
+            sn.push('_default')
+        } else {
+            sn = $scope.selectedNode();
+        }
+        var typ = [];
+        angular.forEach($scope.profile.type, function(v, k) {
+            if (v == true) {
+                typ.push(k)
+            }
+        })
+        if ($scope.profile.data.EnableProfile && !$scope.profile.data.ProfileCron) {
+            $scope.profile.data.ProfileCronErr = true;
+            return
+        }
+        if ($scope.profile.data.EnableStats && !$scope.profile.data.StatsCron) {
+            $scope.profile.data.StatsCronErr = true;
+            return
+        }
+        $scope.profile.data.profile = typ;
+        var data = {
+            conf: $scope.profile.data.toJSON(),
+            nodes: sn,
+        }
+        $scope.profile.errmsg = ""
+        Service.SettingSave.query(data, function() {
+
+        }, function(e) {
+          console.log(e)
+          $scope.profile.errmsg = e.config.method + " " + e.config.url + " " + e.status + " " + e.statusText;
         })
     }
 

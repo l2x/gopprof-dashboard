@@ -1,6 +1,7 @@
 'use strict';
 
 myApp.controller('StatsCtrl', function($scope, Service) {
+    $scope.loading = true;
     $scope.options = {
         goroutine: true,
         heap: true,
