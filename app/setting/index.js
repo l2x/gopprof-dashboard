@@ -7,7 +7,9 @@ myApp.controller('SettingCtrl', function($scope, Service) {
     }
     $scope.loading = true;
     $scope.isdfa = 0
+    $scope.issave = false
     $scope.onSelect = function(dfa) {
+        $scope.issave = false
         if (!dfa) {
             var sn = $scope.selectedNode();
             if (sn.length == 0) {
@@ -49,7 +51,7 @@ myApp.controller('SettingCtrl', function($scope, Service) {
     }
 
     $scope.submit = function() {
-        if ($scope.isdfa === -1) {
+        if ($scope.isdfa === -1 || $scope.issave) {
             return
         }
         var sn = [];
@@ -79,7 +81,7 @@ myApp.controller('SettingCtrl', function($scope, Service) {
         }
         $scope.profile.errmsg = ""
         Service.SettingSave.query(data, function() {
-
+          $scope.issave = true
         }, function(e) {
           console.log(e)
           $scope.profile.errmsg = e.config.method + " " + e.config.url + " " + e.status + " " + e.statusText;

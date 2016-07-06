@@ -62,7 +62,7 @@
                         </div>
                     </fieldset>
                     <div class="btn-group">
-                        <a href="javascript:void(0)" class="btn btn-raised btn-default" ng-click="submit()" ng-disabled="isdfa===-1">save</a>
+                        <a href="javascript:void(0)" class="btn btn-raised btn-default" ng-click="submit()" ng-disabled="isdfa===-1 || issave">{{issave?'save success':'save'}}</a>
                     </div>
                     <span class="text-danger" ng-show="profile.errmsg">{{profile.errmsg}}</span>
                 </form>
