@@ -16,7 +16,7 @@ myApp.controller('PprofCtrl', function($scope, $window, Service, CONF, DTOptions
 
     $scope.download = function(type, data) {
         data.downloading = true
-        $window.open(CONF.baseUrl + "/download?type="+type+"&nodeid="+data.NodeID+"&created="+data.Created, '_blank');
+        $window.open(CONF.baseUrl + "/download?type=" + type + "&nodeid=" + data.NodeID + "&created=" + data.Created, '_blank');
         data.downloading = false
     }
 
@@ -54,7 +54,7 @@ myApp.controller('PprofCtrl', function($scope, $window, Service, CONF, DTOptions
     }
 
     $scope.dtOptions = DTOptionsBuilder.newOptions().withPaginationType('full_numbers')
-    .withDisplayLength(10).withOption('order', [0, 'desc']);
+        .withDisplayLength(10).withOption('order', [0, 'desc']);
     $scope.dtColumnDefs = [
         DTColumnDefBuilder.newColumnDef(3).notSortable()
     ];

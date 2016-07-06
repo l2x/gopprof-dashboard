@@ -50,12 +50,18 @@ myApp
             }
         }
     })
-    .directive('sidebar', function(Service) {
+    .directive('sidebar', function($cookies, Service) {
         return {
             restrict: 'E',
             link: function(scope, el, attrs, controller) {
+                var $selected = $cookies.getObject("sidebar:node:selected");
+                if (!$selected) {
+                    $selected = {}
+                }
+
                 scope.sidebarSelect = function(nodes, node) {
                     node.checked = node.checked ? false : true;
+                    saveSelect(node)
                     if (!node.checked) {
                         scope.allChecked = false;
                         return;
@@ -87,10 +93,24 @@ myApp
 
                 Service.Nodes.query({}, function(response) {
                     scope.nodes = response
+                    angular.forEach(scope.nodes, function(node) {
+                        if ($selected[node.NodeID]) {
+                            node.checked = true
+                        }
+                    })
                 }, function(e) {
                     console.log(e)
                     scope.sidebar_errmsg = e.config.method + " " + e.config.url + " " + e.status + " " + e.statusText;
                 });
+
+                function saveSelect(node) {
+                    if (node.checked) {
+                        $selected[node.NodeID] = true;
+                    } else {
+                        delete $selected[node.NodeID];
+                    }
+                    $cookies.putObject("sidebar:node:selected", $selected);
+                }
             },
             templateUrl: function(elem, attr) {
                 return 'common/sidebar.html';

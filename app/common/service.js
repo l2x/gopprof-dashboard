@@ -20,6 +20,11 @@ myApp
                     method: "post",
                     isArray: true
                 }
+            }),
+            Setting: $resource(CONF.baseUrl + "/setting", {}, {
+                query: {
+                    method: "get"
+                }
             })
         };
     });

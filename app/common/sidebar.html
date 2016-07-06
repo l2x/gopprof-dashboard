@@ -3,14 +3,14 @@
         <input class="filter" type="text" ng-model="filterText" placeholder="Filter by label or name">
     </div>
 
-    <div >
+    <div>
         <table class="table table-hover">
             <thead>
                 <tr>
                     <th ng-click="sidebarSelectAll(nodes);onSelect()">
                         <input type="checkbox" ng-checked="allChecked">
                     </th>
-                    <th>Node</th>
+                    <th>Node({{selectedNode().length}}/{{nodes.length}})</th>
                     <th>Internal IP</th>
                 </tr>
             </thead>

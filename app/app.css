@@ -112,8 +112,13 @@
 .setting .form-group label.control-label {
   font-size: 14px
 }
-
-
+loadingbar{
+  display: block;
+  height: 150px;
+}
+.ml15 {
+  margin-left: 15px
+}
 
 .showbox {
     position: relative;
