@@ -6,11 +6,30 @@ myApp
             restrict: 'A',
             link: function(scope, el, attrs, controller) {
                 var clazz = attrs.activeLink;
-                var path = el.children('a').attr('href');
+                var path = ""
+                var data_href = el.attr('data-href')
+                var data_prefix = el.attr('data-prefix')
+                if (data_href) {
+                    path = data_href
+                } else if (data_prefix) {
+                    path = data_prefix
+                } else {
+                    path = el.children('a').attr('href');
+                }
                 path = path.substring(1);
                 scope.location = location;
                 scope.$watch('location.path()', function(newPath) {
-                    if (path === newPath) {
+                    var cur = false
+                    if (data_prefix) {
+                        if (newPath.indexOf(path) == 0) {
+                            cur = true
+                        }
+                    } else {
+                        if (path === newPath) {
+                            cur = true
+                        }
+                    }
+                    if (cur) {
                         el.addClass(clazz);
                     } else {
                         el.removeClass(clazz);
@@ -54,21 +73,37 @@ myApp
         return {
             restrict: 'E',
             link: function(scope, el, attrs, controller) {
-                var $selected = $cookies.getObject("sidebar:node:selected");
+                var single = el.attr("data-checkbox") == "single";
+                if (single) {
+                    scope.allCheckedHide = true;
+                }
+                var $selected;
+                if (!single) {
+                    $selected = $cookies.getObject("sidebar:node:selected");
+                }
                 if (!$selected) {
                     $selected = {}
                 }
 
                 scope.sidebarSelect = function(nodes, node) {
                     node.checked = node.checked ? false : true;
-                    saveSelect(node)
+                    if (single) {
+                        angular.forEach(nodes, function(n) {
+                            if (n.NodeID != node.NodeID) {
+                                n.checked = false
+                            }
+                        })
+                    }
+                    if (!single) {
+                        saveSelect(node)
+                    }
                     if (!node.checked) {
                         scope.allChecked = false;
                         return;
                     }
                     var ak = true
-                    angular.forEach(nodes, function(node, k) {
-                        if (!node.checked) {
+                    angular.forEach(nodes, function(n, k) {
+                        if (!n.checked) {
                             ak = false;
                             return;
                         }

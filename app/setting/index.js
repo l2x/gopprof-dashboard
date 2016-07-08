@@ -5,32 +5,36 @@ myApp.controller('SettingCtrl', function($scope, Service) {
         data: {},
         type: {},
     }
-    $scope.loading = true;
-    $scope.isdfa = 0
-    $scope.issave = false
-    $scope.onSelect = function(dfa) {
-        $scope.issave = false
-        if (!dfa) {
-            var sn = $scope.selectedNode();
-            if (sn.length == 0) {
-                $scope.isdfa = -1
-                return
-            }
-            $scope.isdfa = 0
-            if (sn.length > 1) {
-                $scope.profile.data = {}
-                return
-            }
-            var nodeid = sn[0];
-        } else {
-            $scope.isdfa = 1
-            var nodeid = "_default"
+    $scope.noselected = true
+    $scope.setDefault = function() {
+        $scope.noselected = false
+        angular.forEach($scope.nodes, function(node) {
+            node.checked = false
+        })
+        $scope.isSetDefault = true
+        request("_default")
+    }
 
-            angular.forEach($scope.nodes, function(node) {
-                node.checked = false
-            })
+    $scope.issave = false
+    $scope.onSelect = function() {
+        $scope.noselected =  false;
+        $scope.isSetDefault = false
+        var sn = []
+        if ($scope.isSetDefault) {
+            sn.push('_default')
+        } else {
+            sn = $scope.selectedNode();
         }
+        if (sn.length == 0) {
+            return
+        }
+        var nodeid = sn[0];
+        request(nodeid)
+    }
+
+    function request(nodeid) {
         $scope.loading = true;
+        $scope.issave = false
         Service.Setting.query({
             "nodeid": nodeid
         }, function(response) {
@@ -51,11 +55,11 @@ myApp.controller('SettingCtrl', function($scope, Service) {
     }
 
     $scope.submit = function() {
-        if ($scope.isdfa === -1 || $scope.issave) {
+        if ($scope.issave) {
             return
         }
         var sn = [];
-        if ($scope.isdfa == 1) {
+        if ($scope.isSetDefault) {
             sn.push('_default')
         } else {
             sn = $scope.selectedNode();
@@ -81,10 +85,10 @@ myApp.controller('SettingCtrl', function($scope, Service) {
         }
         $scope.profile.errmsg = ""
         Service.SettingSave.query(data, function() {
-          $scope.issave = true
+            $scope.issave = true
         }, function(e) {
-          console.log(e)
-          $scope.profile.errmsg = e.config.method + " " + e.config.url + " " + e.status + " " + e.statusText;
+            console.log(e)
+            $scope.profile.errmsg = e.config.method + " " + e.config.url + " " + e.status + " " + e.statusText;
         })
     }
 

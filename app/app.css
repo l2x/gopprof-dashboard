@@ -15,7 +15,7 @@
     font-weight: bold;
 }
 .nav>li {
-    width: 100px;
+    min-width: 100px;
     text-align: center;
 }
 .sidebar {

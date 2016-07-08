@@ -37,9 +37,21 @@
                 <ul class="nav navbar-nav">
                     <li active-link="active"><a href="#/pprof">Profiling</a></li>
                     <li active-link="active"><a href="#/stats">Stats</a></li>
-                    <li active-link="active"><a href="#/setting">Setting</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown"  active-link="active" data-prefix="#/setting">
+                        <a href="javascript:void(0);" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Setting
+                          <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#/setting">Profile&Stats</a></li>
+                            <li><a href="#/setting/goroot">Goroot</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
+
         </div>
     </div>
 
