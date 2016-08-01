@@ -25,6 +25,10 @@ config(['$locationProvider', '$routeProvider', '$resourceProvider', function($lo
                 templateUrl: 'setting/index.html',
                 controller: 'SettingCtrl'
             })
+            .when("/setting/goroot", {
+                templateUrl: 'setting/goroot.html',
+                controller: 'GorootCtrl'
+            })
             .otherwise({
                 redirectTo: '/pprof'
             });

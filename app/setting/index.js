@@ -78,3 +78,8 @@ myApp.controller('SettingCtrl', function($scope, Service) {
         $scope.onSelect()
     }, 1000)
 })
+
+
+myApp.controller('GorootCtrl', function($scope, Service) {
+
+})
