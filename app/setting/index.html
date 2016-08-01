@@ -1,9 +1,6 @@
 <div class="row">
     <sidebar data-checkbox="single"></sidebar>
     <div class="col-sm-8">
-        <div class="clearfix">
-            <a href="javascript:void(0)" class="btn btn-raised btn-default pull-right" ng-click="setDefault()">set global setting</a>
-        </div>
         <p class="errmsg text-center text-danger" ng-show="!loading && errmsg">{{errmsg}}</p>
         <loadingbar ng-show="loading"></loadingbar>
         <div ng-show="!loading && !noselected">

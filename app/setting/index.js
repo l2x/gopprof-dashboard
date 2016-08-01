@@ -6,25 +6,11 @@ myApp.controller('SettingCtrl', function($scope, Service) {
         type: {},
     }
     $scope.noselected = true
-    $scope.setDefault = function() {
-        $scope.noselected = false
-        angular.forEach($scope.nodes, function(node) {
-            node.checked = false
-        })
-        $scope.isSetDefault = true
-        request("_default")
-    }
-
     $scope.issave = false
     $scope.onSelect = function() {
-        $scope.noselected =  false;
-        $scope.isSetDefault = false
+        $scope.noselected = false;
         var sn = []
-        if ($scope.isSetDefault) {
-            sn.push('_default')
-        } else {
-            sn = $scope.selectedNode();
-        }
+        sn = $scope.selectedNode();
         if (sn.length == 0) {
             return
         }
@@ -59,11 +45,7 @@ myApp.controller('SettingCtrl', function($scope, Service) {
             return
         }
         var sn = [];
-        if ($scope.isSetDefault) {
-            sn.push('_default')
-        } else {
-            sn = $scope.selectedNode();
-        }
+        sn = $scope.selectedNode();
         var typ = [];
         angular.forEach($scope.profile.type, function(v, k) {
             if (v == true) {
