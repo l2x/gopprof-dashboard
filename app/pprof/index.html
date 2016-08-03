@@ -36,7 +36,7 @@
                             <td>{{ data.Created*1000 | date:'yyyy/MM/dd HH:mm:ss' }}</td>
                             <td>{{ data.NodeID }}</td>
                             <td>{{ data.Type }}</td>
-                            <td>{{ data.Version }}</td>
+                            <td>{{ data.GoVersion }}</td>
                             <td class="text-danger" ng-if="data.ErrMsg">{{data.ErrMsg}}</td>
                             <td ng-if="!data.ErrMsg">
                                 <div class="btn-group">
@@ -45,8 +45,8 @@
                                         <span class="caret"></span>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="javascript:void(0)" ng-click="download('pdf', data)">pdf</a></li>
-                                        <li><a href="javascript:void(0)" ng-click="download('pprof', data)">pprof file</a></li>
+                                        <li ng-if="data.Type != 'trace' && data.Type != 'block'"><a href="javascript:void(0)" ng-click="download('pdf', data)">profile PDF</a></li>
+                                        <li><a href="javascript:void(0)" ng-click="download('pprof', data)">profile source</a></li>
                                         <li><a href="javascript:void(0)" ng-click="download('bin', data)">binary file</a></li>
                                     </ul>
                                 </div>

@@ -1,0 +1,17 @@
+<div class="row options-date">
+    <div class="col-sm-2">
+        <adm-dtp ng-model='date.start' full-data='start_details' maxdate="{{end_details.unix}}" on-change="onSelect()">
+            <input type='text' ng-model='date.start' dtp-input />
+        </adm-dtp>
+    </div>
+    <div class="col-sm-2">
+        <adm-dtp ng-model='date.end' full-data='end_details' mindate="{{start_details.unix}}" on-change="onSelect()">
+            <input type='text' ng-model='date.end' dtp-input />
+        </adm-dtp>
+    </div>
+    <div class="col-sm-7">
+        <div class="btn-group btn-group-raised">
+            <a href="javascript:void(0)" class="btn btn-xs" ng-repeat="date in datelist" ng-click="dateSelect(date.time, $event)" ng-class="{'active':date.time==dateSelected}">{{date.name}}</a>
+        </div>
+    </div>
+</div>

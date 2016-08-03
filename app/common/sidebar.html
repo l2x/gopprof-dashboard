@@ -7,9 +7,10 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th ng-click="sidebarSelectAll(nodes);onSelect()">
+                    <th ng-click="sidebarSelectAll(nodes);onSelect()" ng-if="!allCheckedHide">
                         <input type="checkbox" ng-checked="allChecked">
                     </th>
+                    <th ng-if="allCheckedHide"></th>
                     <th>Node({{selectedNode().length}}/{{nodes.length}})</th>
                     <th>Internal IP</th>
                 </tr>

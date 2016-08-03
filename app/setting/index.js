@@ -1,36 +1,27 @@
 'use strict';
 
-myApp.controller('SettingCtrl', function($scope, Service) {
+myApp.controller('SettingCtrl', function($scope, $timeout, Service) {
+    //$scope.loading = true;
     $scope.profile = {
         data: {},
         type: {},
     }
-    $scope.loading = true;
-    $scope.isdfa = 0
+    $scope.noselected = true
     $scope.issave = false
-    $scope.onSelect = function(dfa) {
-        $scope.issave = false
-        if (!dfa) {
-            var sn = $scope.selectedNode();
-            if (sn.length == 0) {
-                $scope.isdfa = -1
-                return
-            }
-            $scope.isdfa = 0
-            if (sn.length > 1) {
-                $scope.profile.data = {}
-                return
-            }
-            var nodeid = sn[0];
-        } else {
-            $scope.isdfa = 1
-            var nodeid = "_default"
-
-            angular.forEach($scope.nodes, function(node) {
-                node.checked = false
-            })
+    $scope.onSelect = function() {
+        var sn = []
+        sn = $scope.selectedNode();
+        if (sn.length == 0) {
+            return
         }
+        $scope.noselected = false;
+        var nodeid = sn[0];
+        request(nodeid)
+    }
+
+    function request(nodeid) {
         $scope.loading = true;
+        $scope.issave = false
         Service.Setting.query({
             "nodeid": nodeid
         }, function(response) {
@@ -51,15 +42,11 @@ myApp.controller('SettingCtrl', function($scope, Service) {
     }
 
     $scope.submit = function() {
-        if ($scope.isdfa === -1 || $scope.issave) {
+        if ($scope.issave) {
             return
         }
         var sn = [];
-        if ($scope.isdfa == 1) {
-            sn.push('_default')
-        } else {
-            sn = $scope.selectedNode();
-        }
+        sn = $scope.selectedNode();
         var typ = [];
         angular.forEach($scope.profile.type, function(v, k) {
             if (v == true) {
@@ -81,14 +68,48 @@ myApp.controller('SettingCtrl', function($scope, Service) {
         }
         $scope.profile.errmsg = ""
         Service.SettingSave.query(data, function() {
-          $scope.issave = true
+            $scope.issave = true
         }, function(e) {
-          console.log(e)
-          $scope.profile.errmsg = e.config.method + " " + e.config.url + " " + e.status + " " + e.statusText;
+            console.log(e)
+            $scope.profile.errmsg = e.config.method + " " + e.config.url + " " + e.status + " " + e.statusText;
         })
     }
 
-    setTimeout(function() {
+    $timeout(function() {
         $scope.onSelect()
     }, 1000)
-})
+});
+
+
+myApp.controller('GorootCtrl', function($scope, Service) {
+    $scope.addRow = function() {
+        $scope.goroots.push({})
+    }
+
+    $scope.loading = true;
+    Service.SettingGoroot.query({}, function(response) {
+        $scope.loading = false;
+        $scope.goroots = response.length > 0 ? response : [{}]
+    }, function(e) {
+        $scope.loading = false;
+        console.log(e)
+        $scope.errmsg = e.config.method + " " + e.config.url + " " + e.status + " " + e.statusText;
+    })
+
+    $scope.submit = function() {
+        angular.forEach($scope.goroots, function(v, k) {
+            if (!v.version || !v.path) {
+                $scope.goroots.splice(k, 1)
+            }
+        })
+        if ($scope.goroots.length == 0) {
+            return
+        }
+
+        Service.SettingGorootSave.query($scope.goroots, function() {
+            $scope.issave = true
+        }, function(e) {
+            console.log(e)
+        })
+    }
+});

@@ -1,12 +1,9 @@
 <div class="row">
-    <sidebar></sidebar>
+    <sidebar data-checkbox="single"></sidebar>
     <div class="col-sm-8">
-        <div class="clearfix">
-            <a href="javascript:void(0)" class="btn btn-raised btn-default pull-right" ng-click="onSelect(true)">set global setting</a>
-        </div>
         <p class="errmsg text-center text-danger" ng-show="!loading && errmsg">{{errmsg}}</p>
         <loadingbar ng-show="loading"></loadingbar>
-        <div ng-show="!loading">
+        <div ng-show="!loading && !noselected">
             <div class="jumbotron setting">
                 <form class="form-horizontal">
                     <fieldset>
@@ -40,9 +37,9 @@
                         </div>
 
                         <div class="form-group" ng-class="{'has-error':profile.data.ProfileCronErr}">
-                            <label for="" class="col-sm-2 control-label">Profiling Cron</label>
+                            <label for="" class="col-sm-2 control-label">jobs</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" placeholder="cron jobs" ng-model="profile.data.ProfileCron" ng-disabled="!profile.data.EnableProfile">
+                                <input type="text" class="form-control" placeholder="linux style crontab jobs" ng-model="profile.data.ProfileCron" ng-disabled="!profile.data.EnableProfile">
                             </div>
                         </div>
                     </fieldset>
@@ -55,14 +52,14 @@
                             </label>
                         </div>
                         <div class="form-group" ng-class="{'has-error':profile.data.StatsCronErr}">
-                            <label for="" class="col-sm-2 control-label">Stats Cron</label>
+                            <label for="" class="col-sm-2 control-label">jobs</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" placeholder="cron jobs" ng-model="profile.data.StatsCron" ng-disabled="!profile.data.EnableStats" >
+                                <input type="text" class="form-control" placeholder="linux style crontab jobs" ng-model="profile.data.StatsCron" ng-disabled="!profile.data.EnableStats">
                             </div>
                         </div>
                     </fieldset>
                     <div class="btn-group">
-                        <a href="javascript:void(0)" class="btn btn-raised btn-default" ng-click="submit()" ng-disabled="isdfa===-1 || issave">{{issave?'save success':'save'}}</a>
+                        <a href="javascript:void(0)" class="btn btn-raised btn-default" ng-click="submit()" ng-disabled="issave">{{issave?'save success':'save'}}</a>
                     </div>
                     <span class="text-danger" ng-show="profile.errmsg">{{profile.errmsg}}</span>
                 </form>

@@ -13,10 +13,6 @@ config(['$locationProvider', '$routeProvider', '$resourceProvider', function($lo
 
         //$locationProvider.hashPrefix('!');
         $routeProvider
-            .when('/', {
-                templateUrl: 'pprof/index.html',
-                controller: 'PprofCtrl'
-            })
             .when('/pprof', {
                 templateUrl: 'pprof/index.html',
                 controller: 'PprofCtrl'
@@ -29,8 +25,12 @@ config(['$locationProvider', '$routeProvider', '$resourceProvider', function($lo
                 templateUrl: 'setting/index.html',
                 controller: 'SettingCtrl'
             })
+            .when("/setting/goroot", {
+                templateUrl: 'setting/goroot.html',
+                controller: 'GorootCtrl'
+            })
             .otherwise({
-                redirectTo: '/'
+                redirectTo: '/pprof'
             });
     }])
     .constant("CONF", {

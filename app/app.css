@@ -15,7 +15,7 @@
     font-weight: bold;
 }
 .nav>li {
-    width: 100px;
+    min-width: 100px;
     text-align: center;
 }
 .sidebar {
@@ -93,36 +93,42 @@
     padding: 3px 7px;
 }
 .chartbox .btn-group {
-  margin-top:0;
-  margin-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 .setting {
-  font-size: 14px
+    font-size: 14px
 }
 .setting legend {
-  margin-bottom: 10px
+    margin-bottom: 10px
 }
-.setting .togglebutton{
-  margin-bottom: 5px;
-  margin-left: 15px;
+.setting .togglebutton {
+    margin-bottom: 5px;
+    margin-left: 15px;
 }
-.setting label{
-  font-size: 14px
+.setting label {
+    font-size: 14px
 }
 .setting .form-group label.control-label {
-  font-size: 14px
+    font-size: 14px
 }
-loadingbar{
-  display: block;
-  height: 150px;
+loadingbar {
+    display: block;
+    height: 150px;
 }
 .ml15 {
-  margin-left: 15px
+    margin-left: 15px
 }
-.mt30{
-  margin-top:30px
+.ml20 {
+    margin-left: 20px;
 }
-
+.mt30 {
+    margin-top: 30px
+}
+.goroot-form .form-group {
+    margin-top: 0;
+    margin-bottom: 0;
+}
 .showbox {
     position: relative;
     top: 0;

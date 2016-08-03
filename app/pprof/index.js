@@ -1,6 +1,6 @@
 'use strict';
 
-myApp.controller('PprofCtrl', function($scope, $window, Service, CONF, DTOptionsBuilder, DTColumnDefBuilder) {
+myApp.controller('PprofCtrl', function($scope, $window, $timeout, Service, CONF, DTOptionsBuilder, DTColumnDefBuilder) {
     $scope.loading = true;
     $scope.options = {
         cpu: true,
@@ -8,11 +8,14 @@ myApp.controller('PprofCtrl', function($scope, $window, Service, CONF, DTOptions
         trace: true,
         block: true
     }
+    var timer = null;
     $scope.onSelect = function() {
-        clearTimeout(timer)
-        timer = setTimeout(function() {
+        $scope.pprofs = null
+        $scope.loading = true;
+        $timeout.cancel(timer);
+        timer = $timeout(function() {
             pprof($scope.selectedNode(), $scope.options, $scope.date)
-        }, 600)
+        }, 600);
     }
 
     $scope.download = function(type, data) {
@@ -23,6 +26,7 @@ myApp.controller('PprofCtrl', function($scope, $window, Service, CONF, DTOptions
 
     function pprof(nodes, options, date) {
         if (nodes.length == 0) {
+            $scope.loading = false
             return
         }
         var opt = [];
@@ -60,8 +64,7 @@ myApp.controller('PprofCtrl', function($scope, $window, Service, CONF, DTOptions
         DTColumnDefBuilder.newColumnDef(3).notSortable()
     ];
 
-    var timer = null;
     $scope.$on("$destroy", function() {
-        clearTimeout(timer)
+        $timeout.cancel(timer);
     });
 });
