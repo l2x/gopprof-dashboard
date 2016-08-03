@@ -8,3 +8,4 @@ tmp
 /dist/
 /npm-debug.log
 /typings/
+build/
