@@ -12,15 +12,7 @@
     <title>gopprof dashboard</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="stylesheet" type="text/css" href="bower_components/datatables/media/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" type="text/css" href="bower_components/angular-datatables/dist/css/angular-datatables.min.css">
-    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap-material-design/dist/css/bootstrap-material-design.min.css">
-    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap-material-design/dist/css/ripples.min.css">
-    <link rel="stylesheet" type="text/css" href="bower_components/adm-dtp/dist/ADM-dateTimePicker.min.css">
-    <link rel="stylesheet" href="app.css">
-
+    <link rel="stylesheet" type="text/css" href="global.css">
 </head>
 
 <body>
@@ -56,28 +48,8 @@
 
     <div class="content container-fluid" ng-view></div>
 
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="bower_components/arrive/minified/arrive.min.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="bower_components/bootstrap-material-design/dist/js/material.min.js"></script>
-    <script src="bower_components/bootstrap-material-design/dist/js/ripples.min.js"></script>
-    <script src="bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
-    <script src="bower_components/highcharts/highstock.js"></script>
-
-    <script src="bower_components/angular/angular.min.js"></script>
-    <script src="bower_components/angular-route/angular-route.min.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.min.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
-
-    <script src="bower_components/adm-dtp/dist/ADM-dateTimePicker.min.js"></script>
-    <script src="bower_components/angular-datatables/dist/angular-datatables.min.js"></script>
-
+    <script src="global.js"></script>
     <script src="app.js"></script>
-    <script src="common/service.js"></script>
-    <script src="common/directive.js"></script>
-    <script src="pprof/index.js"></script>
-    <script src="stats/index.js"></script>
-    <script src="setting/index.js"></script>
 </body>
 
 </html>
