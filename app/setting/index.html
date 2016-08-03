@@ -37,9 +37,9 @@
                         </div>
 
                         <div class="form-group" ng-class="{'has-error':profile.data.ProfileCronErr}">
-                            <label for="" class="col-sm-2 control-label">Profiling Cron</label>
+                            <label for="" class="col-sm-2 control-label">jobs</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" placeholder="cron jobs" ng-model="profile.data.ProfileCron" ng-disabled="!profile.data.EnableProfile">
+                                <input type="text" class="form-control" placeholder="linux style crontab jobs" ng-model="profile.data.ProfileCron" ng-disabled="!profile.data.EnableProfile">
                             </div>
                         </div>
                     </fieldset>
@@ -52,9 +52,9 @@
                             </label>
                         </div>
                         <div class="form-group" ng-class="{'has-error':profile.data.StatsCronErr}">
-                            <label for="" class="col-sm-2 control-label">Stats Cron</label>
+                            <label for="" class="col-sm-2 control-label">jobs</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" placeholder="cron jobs" ng-model="profile.data.StatsCron" ng-disabled="!profile.data.EnableStats">
+                                <input type="text" class="form-control" placeholder="linux style crontab jobs" ng-model="profile.data.StatsCron" ng-disabled="!profile.data.EnableStats">
                             </div>
                         </div>
                     </fieldset>

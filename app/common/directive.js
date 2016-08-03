@@ -38,23 +38,47 @@ myApp
             }
         };
     }])
-    .directive('datepicker', function() {
+    .directive('datepicker', function($cookies) {
         return {
             restrict: 'E',
             link: function($scope, $el, $attrs, $controller) {
+                $scope.datelist = [{
+                    time: 3600000,
+                    name: "1 hour"
+                }, {
+                    time: 3600000 * 6,
+                    name: "6h"
+                }, {
+                    time: 3600000 * 12,
+                    name: "12h"
+                }, {
+                    time: 3600000 * 24,
+                    name: "1 day"
+                }, {
+                    time: 3600000 * 24 * 3,
+                    name: "3d"
+                }, {
+                    time: 3600000 * 24 * 7,
+                    name: "7d"
+                }, {
+                    time: 3600000 * 24 * 14,
+                    name: "14d"
+                }, {
+                    time: 3600000 * 24 * 30,
+                    name: "30d"
+                }, ];
+
                 $scope.dateSelect = function(s, $event) {
-                    if (typeof $event != "undefined") {
-                        var elm = angular.element($event.currentTarget || $event.srcElement);
-                        elm.parent().find('a').removeClass('active')
-                        elm.addClass('active')
-                    }
+                    $scope.dateSelected = s
                     var n = new Date();
                     $scope.date = {
                         start: n.setTime(n.getTime() - s),
                         end: new Date(),
                     }
+                    $cookies.putObject("datepicker:selected", s);
                 }
-                $scope.dateSelect(3600000)
+                var s = $cookies.getObject("datepicker:selected");
+                $scope.dateSelect(s ? s : 3600000);
             },
             templateUrl: function(elem, attr) {
                 return 'common/datepicker.html';

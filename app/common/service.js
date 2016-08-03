@@ -32,5 +32,16 @@ myApp
                     method: "post"
                 }
             }),
+            SettingGoroot: $resource(CONF.baseUrl + "/setting/goroot", {}, {
+                query: {
+                    method: "get",
+                    isArray: true,
+                }
+            }),
+            SettingGorootSave: $resource(CONF.baseUrl + "/setting/goroot/save", {}, {
+                query: {
+                    method: "post"
+                }
+            }),
         };
     });

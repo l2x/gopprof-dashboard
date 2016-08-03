@@ -1,21 +1,27 @@
 'use strict';
 
-myApp.controller('StatsCtrl', function($scope, Service) {
+myApp.controller('StatsCtrl', function($scope, $timeout, Service) {
     $scope.loading = true;
     $scope.options = {
         goroutine: true,
         heap: true,
         gc: true
     }
+
+    var timer = null;
     $scope.onSelect = function() {
-        clearTimeout(timer)
-        timer = setTimeout(function() {
+        $scope.loading = true;
+        $("#chart_container").empty()
+        $timeout.cancel(timer);
+        timer = $timeout(function() {
             stats($scope.selectedNode(), $scope.options, $scope.date)
         }, 600)
     }
 
     function stats(nodes, options, date) {
+
         if (nodes.length == 0) {
+            $scope.loading = false;
             return
         }
         var opt = [];
@@ -36,7 +42,6 @@ myApp.controller('StatsCtrl', function($scope, Service) {
             }
         }
 
-        $("#chart_container").empty()
         $scope.loading = true;
         Service.Stats.query(data, function(response) {
             $scope.loading = false;
@@ -81,8 +86,7 @@ myApp.controller('StatsCtrl', function($scope, Service) {
         }
     });
 
-    var timer = null;
     $scope.$on("$destroy", function() {
-        clearTimeout(timer)
+        $timeout.cancel(timer);
     });
 });

@@ -1,19 +1,31 @@
 <div class="row">
-  <div class="col-sm-8">
-    <div class="jumbotron setting">
-        <form class="form-horizontal">
-            <fieldset>
-              <div class="form-group" ng-class="{'has-error':profile.data.ProfileCronErr}">
-                  <label for="" class="col-sm-2 control-label"></label>
-                  <div class="form-inline">
-                      <input type="text" class="form-control" placeholder="go version" style="width:100px">
-                      <input type="text" class="form-control" placeholder="go root" style="width:200px">
-                  </div>
-              </div>
+    <div class="col-sm-8">
+        <p class="errmsg text-center text-danger" ng-show="!loading && errmsg">{{errmsg}}</p>
+        <loadingbar ng-show="loading"></loadingbar>
+        <div class="jumbotron setting">
+            <form class="form-horizontal">
+                <fieldset class="goroot-form">
 
+                    <div class="form-group" ng-repeat="(k, goroot) in goroots">
+                        <label for="" class="col-sm-2 control-label"></label>
+                        <div class="form-inline">
+                            <input type="text" class="form-control" placeholder="go version" style="width:100px" ng-model="goroot.version">
+                            <input type="text" class="form-control" placeholder="go root path" style="width:200px" ng-model="goroot.path">
+                            <a class="glyphicon glyphicon-plus ml20" href="javascript:void(0)" ng-click="addRow()" ng-if="k==0"></a>
+                        </div>
+                    </div>
 
-            </fieldset>
-        </form>
-      </div>
+                    <div class="form-group">
+                        <label for="" class="col-sm-2 control-label"></label>
+                        <div>
+                            <div class="btn-group">
+                                <a href="javascript:void(0)" class="btn btn-raised btn-default" ng-click="submit()" ng-disabled="issave">{{issave?'save success':'save'}}</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>
+        </div>
     </div>
 </div>
