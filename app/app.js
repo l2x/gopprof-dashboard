@@ -11,19 +11,19 @@ var myApp = angular.module('myApp', [
 ]);
 
 myApp.factory('myInterceptor', function($q) {
-        var interceptor = {
-            'responseError': function(rejection) {
-                console.log(rejection)
-                $.snackbar({
-                    content: ['<span class="text-danger">[ERROR] ', rejection.config.method, rejection.config.url, rejection.status, rejection.statusText, '<span>'].join(" "),
-                    timeout: 0,
-                    htmlAllowed: true
-                });
-                return $q.reject(rejection);
-            }
-        };
-        return interceptor;
-    });
+    var interceptor = {
+        'responseError': function(rejection) {
+            console.log(rejection)
+            $.snackbar({
+                content: ['<span class="text-danger">[ERROR] ', rejection.config.method, rejection.config.url, rejection.status, rejection.statusText, '<span>'].join(" "),
+                timeout: 0,
+                htmlAllowed: true
+            });
+            return $q.reject(rejection);
+        }
+    };
+    return interceptor;
+});
 
 myApp.config(['$locationProvider', '$routeProvider', '$resourceProvider', '$httpProvider', function($locationProvider, $routeProvider, $resourceProvider, $httpProvider) {
     $.material.init()
