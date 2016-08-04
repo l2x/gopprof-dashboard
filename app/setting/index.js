@@ -71,7 +71,11 @@ myApp.controller('SettingCtrl', function($scope, $timeout, Service) {
             $scope.issave = true
         }, function(e) {
             console.log(e)
-            $scope.profile.errmsg = e.config.method + " " + e.config.url + " " + e.status + " " + e.statusText;
+            $.snackbar({
+                content: ['<span class="text-danger">[ERROR] ', e.config.method, e.config.url, e.status, e.statusText, '<span>'].join(" "),
+                timeout: 0,
+                htmlAllowed: true
+            });
         })
     }
 
@@ -81,24 +85,20 @@ myApp.controller('SettingCtrl', function($scope, $timeout, Service) {
 });
 
 
-myApp.controller('GorootCtrl', function($scope, Service) {
+myApp.controller('GorootCtrl', function($rootScope, $scope, Service) {
     $scope.addRow = function() {
         $scope.goroots.push({})
     }
-
     $scope.loading = true;
     Service.SettingGoroot.query({}, function(response) {
-        $scope.loading = false;
         $scope.goroots = response.length > 0 ? response : [{}]
-    }, function(e) {
+    }).$promise.finally(function() {
         $scope.loading = false;
-        console.log(e)
-        $scope.errmsg = e.config.method + " " + e.config.url + " " + e.status + " " + e.statusText;
-    })
+    });
 
     $scope.submit = function() {
         angular.forEach($scope.goroots, function(v, k) {
-            if (!v.version || !v.path) {
+            if ((!v.version || !v.path) && k != 0) {
                 $scope.goroots.splice(k, 1)
             }
         })
@@ -106,10 +106,10 @@ myApp.controller('GorootCtrl', function($scope, Service) {
             return
         }
 
-        Service.SettingGorootSave.query($scope.goroots, function() {
-            $scope.issave = true
-        }, function(e) {
-            console.log(e)
-        })
+        return Service.SettingGorootSave.query($scope.goroots, function() {
+            $.snackbar({
+                content: 'save success'
+            });
+        });
     }
 });
