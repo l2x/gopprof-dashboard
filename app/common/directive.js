@@ -97,15 +97,20 @@ myApp
         return {
             restrict: 'E',
             link: function(scope, el, attrs, controller) {
-                var $selected = $cookies.getObject("sidebar:node:selected");
-                if (!$selected) {
-                    $selected = {}
-                }
+                var $selected = $cookies.getObject("sidebar:node:selected") || {};
+
+                Service.Nodes.query({}, function(response) {
+                    scope.nodes = response
+                    angular.forEach(response, function(node) {
+                        if ($selected[node.NodeID]) {
+                            node.checked = true
+                        }
+                    })
+                });
 
                 scope.sidebarSelect = function(nodes, node) {
                     node.checked = node.checked ? false : true;
                     saveSelect(node)
-
                     if (!node.checked) {
                         scope.allChecked = false;
                         return;
@@ -123,26 +128,12 @@ myApp
                     scope.allChecked = scope.allChecked ? false : true;
                     angular.forEach(nodes, function(node, k) {
                         node.checked = scope.allChecked
+                        saveSelect(node)
                     })
                 };
                 scope.selectedNode = function() {
-                    var sn = []
-                    angular.forEach(scope.nodes, function(node) {
-                        if (node.checked) {
-                            sn.push(node.NodeID)
-                        }
-                    });
-                    return sn;
+                    return Object.keys($selected);
                 }
-
-                Service.Nodes.query({}, function(response) {
-                    scope.nodes = response
-                    angular.forEach(scope.nodes, function(node) {
-                        if ($selected[node.NodeID]) {
-                            node.checked = true
-                        }
-                    })
-                });
 
                 function saveSelect(node) {
                     if (node.checked) {

@@ -10,7 +10,6 @@ myApp.controller('SettingCtrl', function($scope, $timeout, Service) {
             $scope.setting = null
             return
         }
-        // TODO
         if (sn.length > 1) {
           $scope.setting = {}
           return
@@ -30,6 +29,7 @@ myApp.controller('SettingCtrl', function($scope, $timeout, Service) {
             if (!response.EnableProfile) {
                 return
             }
+            $scope.setting.ProfileType = {}
             angular.forEach(response.Profile, function(v) {
                 $scope.setting.ProfileType[v] = true
             })
@@ -39,8 +39,10 @@ myApp.controller('SettingCtrl', function($scope, $timeout, Service) {
     }
 
     $scope.submit = function() {
-        
         var sn = $scope.selectedNode();
+        if(sn.length == 0) {
+          return
+        }
         var setting = $scope.setting;
         setting.Profile = []
         angular.forEach($scope.setting.ProfileType, function(v, k) {
@@ -61,7 +63,7 @@ myApp.controller('SettingCtrl', function($scope, $timeout, Service) {
 
     $timeout(function() {
         $scope.onSelect()
-    }, 1000);
+    }, 600);
 
     $scope.$on("$destroy", function() {
         $timeout.cancel(timer);
