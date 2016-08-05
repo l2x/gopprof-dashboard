@@ -2,7 +2,9 @@
 
 myApp.controller('SettingCtrl', function($scope, $timeout, Service) {
 
+    var timer = null;
     $scope.onSelect = function() {
+        $timeout.cancel(timer);
         var sn = $scope.selectedNode();
         if (sn.length == 0) {
             $scope.setting = null
@@ -13,8 +15,9 @@ myApp.controller('SettingCtrl', function($scope, $timeout, Service) {
           $scope.setting = {}
           return
         }
-
-        request(sn)
+        timer = $timeout(function() {
+            request(sn)
+        }, 600);
     }
 
     function request(nodeid) {
@@ -36,6 +39,7 @@ myApp.controller('SettingCtrl', function($scope, $timeout, Service) {
     }
 
     $scope.submit = function() {
+        
         var sn = $scope.selectedNode();
         var setting = $scope.setting;
         setting.Profile = []
@@ -57,7 +61,11 @@ myApp.controller('SettingCtrl', function($scope, $timeout, Service) {
 
     $timeout(function() {
         $scope.onSelect()
-    }, 1000)
+    }, 1000);
+
+    $scope.$on("$destroy", function() {
+        $timeout.cancel(timer);
+    });
 });
 
 

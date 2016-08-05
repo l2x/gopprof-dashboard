@@ -97,30 +97,15 @@ myApp
         return {
             restrict: 'E',
             link: function(scope, el, attrs, controller) {
-                var single = el.attr("data-checkbox") == "single";
-                if (single) {
-                    scope.allCheckedHide = true;
-                }
-                var $selected;
-                if (!single) {
-                    $selected = $cookies.getObject("sidebar:node:selected");
-                }
+                var $selected = $cookies.getObject("sidebar:node:selected");
                 if (!$selected) {
                     $selected = {}
                 }
 
                 scope.sidebarSelect = function(nodes, node) {
                     node.checked = node.checked ? false : true;
-                    if (single) {
-                        angular.forEach(nodes, function(n) {
-                            if (n.NodeID != node.NodeID) {
-                                n.checked = false
-                            }
-                        })
-                    }
-                    if (!single) {
-                        saveSelect(node)
-                    }
+                    saveSelect(node)
+
                     if (!node.checked) {
                         scope.allChecked = false;
                         return;
@@ -157,9 +142,6 @@ myApp
                             node.checked = true
                         }
                     })
-                }, function(e) {
-                    console.log(e)
-                    scope.sidebar_errmsg = e.config.method + " " + e.config.url + " " + e.status + " " + e.statusText;
                 });
 
                 function saveSelect(node) {
