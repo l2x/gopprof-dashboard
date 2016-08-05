@@ -2,7 +2,7 @@
     <div class="col-sm-8">
         <loadingbar ng-show="loading"></loadingbar>
         <div class="jumbotron setting" ng-show="!loading">
-            <form class="form-horizontal">
+            <form class="form-horizontal" name="form">
                 <fieldset class="goroot-form">
 
                     <div class="form-group form-inline" ng-repeat="(k, goroot) in goroots">
@@ -20,7 +20,7 @@
                         <label for="" class="col-sm-2 control-label"></label>
                         <div>
                             <div class="btn-group">
-                                <button href="javascript:void(0)" class="btn btn-raised btn-default" ng-click="submit()" promise-btn>Save</button>
+                                <button href="javascript:void(0)" class="btn btn-raised btn-default" ng-click="submit()" ng-disabled="form.$invalid"  promise-btn>Save</button>
                             </div>
                         </div>
                     </div>

@@ -4,7 +4,7 @@
         <loadingbar ng-show="loading"></loadingbar>
         <div ng-show="!loading && setting">
             <div class="jumbotron setting">
-                <form class="form-horizontal">
+                <form class="form-horizontal" name="form">
                     <fieldset>
                         <legend>Profile</legend>
                         <div class="togglebutton">
@@ -38,7 +38,7 @@
                         <div class="form-group">
                             <label for="" class="col-sm-2 control-label">jobs</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" placeholder="linux style crontab jobs" ng-model="setting.ProfileCron" ng-disabled="!setting.EnableProfile">
+                                <input type="text" class="form-control" placeholder="linux style crontab jobs" ng-model="setting.ProfileCron" ng-disabled="!setting.EnableProfile" ng-required="setting.EnableProfile">
                             </div>
                         </div>
                     </fieldset>
@@ -53,12 +53,12 @@
                         <div class="form-group">
                             <label for="" class="col-sm-2 control-label">jobs</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" placeholder="linux style crontab jobs" ng-model="setting.StatsCron" ng-disabled="!setting.EnableStats">
+                                <input type="text" class="form-control" placeholder="linux style crontab jobs" ng-model="setting.StatsCron" ng-disabled="!setting.EnableStats" ng-required="setting.EnableStats">
                             </div>
                         </div>
                     </fieldset>
                     <div class="btn-group">
-                        <a href="javascript:void(0)" class="btn btn-raised btn-default" ng-click="submit()" promise-btn>Save</a>
+                        <button class="btn btn-raised btn-default" ng-click="submit()" ng-disabled="form.$invalid" promise-btn>Save</button>
                     </div>
                     <span class="text-danger" ng-show="profile.errmsg">{{profile.errmsg}}</span>
                 </form>

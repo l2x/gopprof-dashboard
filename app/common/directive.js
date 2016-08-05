@@ -97,30 +97,20 @@ myApp
         return {
             restrict: 'E',
             link: function(scope, el, attrs, controller) {
-                var single = el.attr("data-checkbox") == "single";
-                if (single) {
-                    scope.allCheckedHide = true;
-                }
-                var $selected;
-                if (!single) {
-                    $selected = $cookies.getObject("sidebar:node:selected");
-                }
-                if (!$selected) {
-                    $selected = {}
-                }
+                var $selected = $cookies.getObject("sidebar:node:selected") || {};
+
+                Service.Nodes.query({}, function(response) {
+                    scope.nodes = response
+                    angular.forEach(response, function(node) {
+                        if ($selected[node.NodeID]) {
+                            node.checked = true
+                        }
+                    })
+                });
 
                 scope.sidebarSelect = function(nodes, node) {
                     node.checked = node.checked ? false : true;
-                    if (single) {
-                        angular.forEach(nodes, function(n) {
-                            if (n.NodeID != node.NodeID) {
-                                n.checked = false
-                            }
-                        })
-                    }
-                    if (!single) {
-                        saveSelect(node)
-                    }
+                    saveSelect(node)
                     if (!node.checked) {
                         scope.allChecked = false;
                         return;
@@ -138,29 +128,12 @@ myApp
                     scope.allChecked = scope.allChecked ? false : true;
                     angular.forEach(nodes, function(node, k) {
                         node.checked = scope.allChecked
+                        saveSelect(node)
                     })
                 };
                 scope.selectedNode = function() {
-                    var sn = []
-                    angular.forEach(scope.nodes, function(node) {
-                        if (node.checked) {
-                            sn.push(node.NodeID)
-                        }
-                    });
-                    return sn;
+                    return Object.keys($selected);
                 }
-
-                Service.Nodes.query({}, function(response) {
-                    scope.nodes = response
-                    angular.forEach(scope.nodes, function(node) {
-                        if ($selected[node.NodeID]) {
-                            node.checked = true
-                        }
-                    })
-                }, function(e) {
-                    console.log(e)
-                    scope.sidebar_errmsg = e.config.method + " " + e.config.url + " " + e.status + " " + e.statusText;
-                });
 
                 function saveSelect(node) {
                     if (node.checked) {
