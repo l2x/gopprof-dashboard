@@ -13,6 +13,8 @@ module.exports = function(grunt) {
                     'app/bower_components/bootstrap-material-design/dist/css/bootstrap-material-design.min.css',
                     'app/bower_components/bootstrap-material-design/dist/css/ripples.min.css',
                     'app/bower_components/adm-dtp/dist/ADM-dateTimePicker.min.css',
+                    'bower_components/snackbarjs/dist/snackbar.min.css',
+                    'bower_components/snackbarjs/themes-css/material.css',
                     'app/app.css',
                 ],
                 dest: 'build/global.css',
@@ -32,6 +34,7 @@ module.exports = function(grunt) {
                     'app/bower_components/angular-cookies/angular-cookies.min.js',
                     'app/bower_components/adm-dtp/dist/ADM-dateTimePicker.min.js',
                     'app/bower_components/angular-datatables/dist/angular-datatables.min.js',
+                    'bower_components/snackbarjs/dist/snackbar.min.js'
                 ],
                 dest: 'build/global.js'
             },

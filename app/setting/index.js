@@ -25,7 +25,7 @@ myApp.controller('SettingCtrl', function($scope, $timeout, Service) {
             "nodeid": nodeid
         }, function(response) {
             $scope.setting = {}
-            $scope.setting = response
+            $scope.setting = response.toJSON()
             if (!response.EnableProfile) {
                 return
             }
@@ -51,7 +51,7 @@ myApp.controller('SettingCtrl', function($scope, $timeout, Service) {
             }
         });
         var data = {
-            setting: $scope.setting.toJSON(),
+            setting: $scope.setting,
             nodes: sn,
         }
         return Service.SettingSave.query(data, function() {
