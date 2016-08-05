@@ -15,7 +15,7 @@ myApp.factory('myInterceptor', function($q) {
         'responseError': function(rejection) {
             console.log(rejection)
             $.snackbar({
-                content: ['<span class="text-danger">[ERROR] ', rejection.config.method, rejection.config.url, rejection.status, rejection.statusText, '<span>'].join(" "),
+                content: ['<span class="text-danger">[ERROR] ', rejection.config.method, rejection.config.url, rejection.status, rejection.statusText, rejection.data ? '<br>' + rejection.data : "", '<span>'].join(" "),
                 timeout: 0,
                 htmlAllowed: true
             });
