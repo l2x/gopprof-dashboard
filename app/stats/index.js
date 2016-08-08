@@ -19,7 +19,6 @@ myApp.controller('StatsCtrl', function($scope, $timeout, Service) {
     }
 
     function stats(nodes, options, date) {
-
         if (nodes.length == 0) {
             $scope.loading = false;
             return
@@ -31,6 +30,7 @@ myApp.controller('StatsCtrl', function($scope, $timeout, Service) {
             }
         })
         if (opt.length == 0) {
+            $scope.loading = false;
             return;
         }
         var data = {
@@ -44,15 +44,12 @@ myApp.controller('StatsCtrl', function($scope, $timeout, Service) {
 
         $scope.loading = true;
         Service.Stats.query(data, function(response) {
-            $scope.loading = false;
             angular.forEach(response, function(v) {
                 createChart(v.type, v.data)
             })
-        }, function(e) {
+        }).$promise.finally(function() {
             $scope.loading = false;
-            console.log(e)
-            $scope.errmsg = e.config.method + " " + e.config.url + " " + e.status + " " + e.statusText;
-        })
+        });
     }
 
     function createChart(title, series) {

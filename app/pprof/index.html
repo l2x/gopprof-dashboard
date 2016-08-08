@@ -18,7 +18,6 @@
         <datepicker></datepicker>
 
         <div class="row chartbox">
-            <p class="errmsg text-center text-danger" ng-show="!loading && errmsg">{{errmsg}}</p>
             <loadingbar ng-show="loading"></loadingbar>
             <div class="jumbotron" ng-show="pprofs && !loading">
                 <table datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" class="row-border hover">

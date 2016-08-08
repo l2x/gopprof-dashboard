@@ -75,6 +75,12 @@ myApp.controller('GorootCtrl', function($rootScope, $scope, Service) {
     $scope.addRow = function() {
         $scope.goroots.push({})
     }
+    $scope.delRow = function(k) {
+        $scope.goroots.splice(k, 1)
+        if($scope.goroots.length == 0) {
+          $scope.goroots.push({})
+        }
+    }
     $scope.loading = true;
     Service.SettingGoroot.query({}, function(response) {
         $scope.goroots = response.length > 0 ? response : [{}]

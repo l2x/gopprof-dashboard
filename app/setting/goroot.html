@@ -13,7 +13,8 @@
                         <div class="form-group" style="margin-left:20px">
                             <input type="text" class="form-control" placeholder="go root path" style="width:200px" ng-model="goroot.path" required>
                         </div>
-                        <a class="glyphicon glyphicon-plus ml20" href="javascript:void(0)" ng-click="addRow()" ng-if="k==0"></a>
+                        <a class="glyphicon glyphicon-plus ml20" href="javascript:void(0)" ng-click="addRow()" ng-show="k==0"></a>
+                        <a class="glyphicon glyphicon-minus ml20" href="javascript:void(0)" ng-click="delRow(k)"></a>
                     </div>
 
                     <div class="form-group">
