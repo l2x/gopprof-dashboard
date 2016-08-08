@@ -36,6 +36,7 @@ myApp.controller('PprofCtrl', function($scope, $window, $timeout, Service, CONF,
             }
         })
         if (opt.length == 0) {
+            $scope.loading = false
             return;
         }
         var data = {
@@ -49,13 +50,10 @@ myApp.controller('PprofCtrl', function($scope, $window, $timeout, Service, CONF,
 
         $scope.loading = true;
         Service.Profile.query(data, function(response) {
-            $scope.loading = false;
             $scope.pprofs = response;
-        }, function(e) {
+        }).$promise.finally(function() {
             $scope.loading = false;
-            console.log(e)
-            $scope.errmsg = e.config.method + " " + e.config.url + " " + e.status + " " + e.statusText;
-        })
+        });
     }
 
     $scope.dtOptions = DTOptionsBuilder.newOptions().withPaginationType('full_numbers')

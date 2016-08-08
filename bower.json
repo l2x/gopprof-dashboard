@@ -1,28 +1,28 @@
 {
-    "name": "gopprof-dashboard",
-    "description": "",
-    "version": "0.0.0",
-    "homepage": "https://github.com/l2x/gopprof-dashboard",
-    "license": "MIT",
-    "private": true,
-    "dependencies": {
-        "angular": "~1.5.0",
-        "angular-route": "~1.5.0",
-        "angular-loader": "~1.5.0",
-        "angular-mocks": "~1.5.0",
-        "angular-aria": "~1.5.0",
-        "angular-animate": "~1.5.0",
-        "angular-resource": "~1.5.0",
-        "angular-cookies": "~1.5.0",
-
-        "jquery": "~2.2.4",
-        "bootstrap": "~3.3.6",
-        "bootstrap-material-design": "~0.5.10",
-        "arrive": "2.3.1",
-
-        "highcharts": "~4.2.5",
-        "adm-dtp": "",
-        "datatables": "~1.10.12",
-        "angular-datatables": "~0.5.4"
-    }
+  "name": "gopprof-dashboard",
+  "description": "",
+  "version": "0.0.0",
+  "homepage": "https://github.com/l2x/gopprof-dashboard",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.5.0",
+    "angular-route": "~1.5.0",
+    "angular-loader": "~1.5.0",
+    "angular-mocks": "~1.5.0",
+    "angular-aria": "~1.5.0",
+    "angular-animate": "~1.5.0",
+    "angular-resource": "~1.5.0",
+    "angular-cookies": "~1.5.0",
+    "jquery": "~2.2.4",
+    "bootstrap": "~3.3.6",
+    "bootstrap-material-design": "~0.5.10",
+    "arrive": "2.3.1",
+    "highcharts": "~4.2.5",
+    "adm-dtp": "",
+    "datatables": "~1.10.12",
+    "angular-datatables": "~0.5.4",
+    "snackbarjs": "~1.1.0",
+    "angular-promise-buttons": "^0.1.14"
+  }
 }

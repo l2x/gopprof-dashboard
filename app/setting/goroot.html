@@ -1,29 +1,30 @@
 <div class="row">
     <div class="col-sm-8">
-        <p class="errmsg text-center text-danger" ng-show="!loading && errmsg">{{errmsg}}</p>
         <loadingbar ng-show="loading"></loadingbar>
-        <div class="jumbotron setting">
-            <form class="form-horizontal">
+        <div class="jumbotron setting" ng-show="!loading">
+            <form class="form-horizontal" name="form">
                 <fieldset class="goroot-form">
 
-                    <div class="form-group" ng-repeat="(k, goroot) in goroots">
+                    <div class="form-group form-inline" ng-repeat="(k, goroot) in goroots">
                         <label for="" class="col-sm-2 control-label"></label>
-                        <div class="form-inline">
-                            <input type="text" class="form-control" placeholder="go version" style="width:100px" ng-model="goroot.version">
-                            <input type="text" class="form-control" placeholder="go root path" style="width:200px" ng-model="goroot.path">
-                            <a class="glyphicon glyphicon-plus ml20" href="javascript:void(0)" ng-click="addRow()" ng-if="k==0"></a>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="go version" style="width:100px" ng-model="goroot.version" required>
                         </div>
+                        <div class="form-group" style="margin-left:20px">
+                            <input type="text" class="form-control" placeholder="go root path" style="width:200px" ng-model="goroot.path" required>
+                        </div>
+                        <a class="glyphicon glyphicon-plus ml20" href="javascript:void(0)" ng-click="addRow()" ng-show="k==0"></a>
+                        <a class="glyphicon glyphicon-minus ml20" href="javascript:void(0)" ng-click="delRow(k)"></a>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-sm-2 control-label"></label>
                         <div>
                             <div class="btn-group">
-                                <a href="javascript:void(0)" class="btn btn-raised btn-default" ng-click="submit()" ng-disabled="issave">{{issave?'save success':'save'}}</a>
+                                <button href="javascript:void(0)" class="btn btn-raised btn-default" ng-click="submit()" ng-disabled="form.$invalid"  promise-btn>Save</button>
                             </div>
                         </div>
                     </div>
-
                 </fieldset>
             </form>
         </div>
