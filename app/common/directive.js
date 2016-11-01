@@ -101,6 +101,11 @@ myApp
 
                 Service.Nodes.query({}, function(response) {
                     scope.nodes = response
+                    if (Object.keys($selected).length==0 && response.length > 0) {
+                       scope.nodes[0].checked = true
+                       saveSelect(scope.nodes[0])
+                       return
+                    }
                     angular.forEach(response, function(node) {
                         if ($selected[node.NodeID]) {
                             node.checked = true
