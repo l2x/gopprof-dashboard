@@ -52,5 +52,5 @@ myApp.config(['$locationProvider', '$routeProvider', '$resourceProvider', '$http
 }]);
 
 myApp.constant("CONF", {
-    baseUrl: "http://127.0.0.1:8980"
+    baseUrl: ""
 });
